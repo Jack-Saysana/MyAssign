@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const folder = require('./folderModel').folderSchema;
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -9,7 +10,12 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    folders: [folder]
 });
 
 userSchema.methods = {
