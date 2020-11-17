@@ -2,12 +2,18 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/userModel').userSchema;
 
 module.exports = passport => {
+    passport.serializeUser((user, done) => done(null, user.id));
+    passport.deserializeUser((id, done) => {
+        User.findById(id, (err, user) => done(err, user));
+    });
     passport.use('local-signup', new LocalStrategy({
+        passReqToCallback: true,
         usernameField: 'email'
     },
         async (req, username, password, done) => {
             if(!await User.exists({email: username})){
                 let newUser = new User({
+                    name: req.body.name,
                     email: username
                 });
                 newUser.password = newUser.hashPassword(password);

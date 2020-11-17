@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const folder = require('./folderModel').folderSchema;
+const folder = require('./folderModel').folderSchema.schema;
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -15,11 +15,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    folders: [folder]
+    folders: [folder],
+    createdAt: {
+        type: Date,
+        default: new Date()
+    }
 });
 
 userSchema.methods = {
-    checkPassword: inputPass => { return bcrypt.compare(inputPass, this.password); },
+    checkPassword: inputPass => { return bcrypt.compareSync(inputPass, this.password); },
     hashPassword: plainTxt => { return bcrypt.hashSync(plainTxt, 10); }
 }
 
