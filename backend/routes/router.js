@@ -83,7 +83,12 @@ router.post('/assignment', async (req, res) => {
 });
 
 router.post('/update', (req, res) => {
+    User.findOne({_id: req.body._id }, async (err, user) => {
+        if(err) res.status(400).send({ error: err });
+        user.folders.id(req.body.folder).assignments.id(req.body.assignment) = {
 
+        };
+    });
 });
 
 module.exports = router;
