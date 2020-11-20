@@ -1,6 +1,16 @@
 .navbar {
+  padding: 10px 10px 10px 10px;
   height: 100%;
-  width: 0;
+  width: 100;
   position: fixed;
-  padding-top: 60px;
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 12;
+  letter-spacing: 4px;
 }
