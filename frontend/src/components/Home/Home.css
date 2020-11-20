@@ -1,7 +1,7 @@
 .navbar {
   padding: 10px 10px 10px 10px;
   height: 100%;
-  width: 100;
+  width: 90px;
   position: fixed;
   background-color: grey;
   display: flex;
@@ -11,6 +11,6 @@
 .navbar a {
   padding-top: 30px;
   padding-bottom: 30px;
-  font-size: 12;
+  font-size: 12px;
   letter-spacing: 4px;
 }
