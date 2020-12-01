@@ -79,15 +79,104 @@ router.post('/assignment', async (req, res) => {
         }catch(err){
             res.status(500).send({ error: err });
         }
+    }).catch(err => {
+        res.status(404).send({ error: err });
     });
 });
 
-router.post('/update', (req, res) => {
-    User.findOne({_id: req.body._id }, async (err, user) => {
+router.post('/updateAssignment', (req, res) => {
+    User.findOne({ _id: req.body._id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
         if(err) res.status(400).send({ error: err });
         user.folders.id(req.body.folder).assignments.id(req.body.assignment) = {
-
+            title: req.body.title,
+            annotations: {
+                notes: (req.body.notes ? req.body.notes : ""),
+                due: (req.body.due ? req.body.due : undefined),
+                reoccuring: req.body.reoccuring
+            },
+            completed: req.body.completed
         };
+        try {
+            await user.save(err => {
+                if(err) res.status(500).send({error: err});
+                res.status(200).send({message: "Assignment successfully updated"});
+            });
+        }catch(err){
+            res.status(500).send({error: err});
+        }
+    }).catch(err => {
+        res.status(404).send({ error: err });
+    });
+});
+
+router.delete('/deleteAssignment', (req, res) => {
+    User.findOne({ _id: req.body._id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
+        if(err) res.status(400).send({error: err});
+        user.folders.id(req.body.folder).assignments.id(req.body.assignment).remove();
+        try {
+            await user.save(err => {
+                if(err) res.status(500).send({error: err});
+                res.status(200).send({ message: "Assignment successfully deleted"});
+            })
+        }catch(err){
+            if(err) res.status(500).send({error: err});
+        }
+    }).catch(err => {
+        res.status(404).send({ error: err });
+    });
+});
+
+router.post('/updateFolder', (req, res) => {
+    User.findOne({ _id: req.body._id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
+        if(err) res.status(400).send({ error: err });
+        user.folders.id(req.body.folder) = {
+            name: req.body.name
+        }
+        try {
+            await user.save(err => {
+                if (err) res.status(500).send({ error: err });
+                res.status(200).send({ message: "Folder successfully updated" });
+            });
+        }catch(err){
+            if (err) res.status(500).send({ error: err });
+        }
+    }).catch(err => {
+        res.status(404).send({ error: err });
+    });
+});
+
+router.delete('/deleteFolder', (req, res) => {
+    User.findOne({ _id: req.body._id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
+        if (err) res.status(400).send({ error: err });
+        user.folders.id(req.body.folder).remove();
+        try {
+            await user.save(err => {
+                if (err) res.status(500).send({ error: err });
+                res.status(200).send({ message: "Folder successfully deleted" });
+            })
+        } catch (err) {
+            if (err) res.status(500).send({ error: err });
+        }
+    }).catch(err => {
+        res.status(404).send({ error: err });
+    });
+});
+
+router.get('/assignments', (req, res) => {
+    User.findOne({ _id: req.body._id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
+        if(err) res.status(400).send({ error: err });
+        res.status(200).send({ assignments: user.folders.id(req.body.folder).assignments });
+    }).catch(err => {
+        res.status(404).send({ error: err });
+    });
+});
+
+router.get('/folders', (req, res) => {
+    User.findOne({ _id: req.body._id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
+        if(err) res.status(400).send({ error: err });
+        res.status(200).send({ folders: user.folders });
+    }).catch(err => {
+        res.status(404).send({ error: err });
     });
 });
 
