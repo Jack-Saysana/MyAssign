@@ -6,9 +6,12 @@ import React, { Component }from 'react';
 class Home extends Component {
   render() {
     return  (
-      <div>
-      Home
-
+      <div className='home'>
+        <h1>Welcome to MyAssign!</h1>
+          <div className='buttons'>
+            <button type='button'>Get Started</button>
+            <button type='button'>Learn More</button>
+          </div>
       </div>
     );
   }

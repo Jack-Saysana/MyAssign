@@ -5,6 +5,7 @@
   background-color: #9333CC;
   display: flex;
   flex-direction: column;
+  float: left;
 }
 
 .navbar a {
