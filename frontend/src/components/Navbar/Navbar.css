@@ -1,17 +1,18 @@
 /*Dason Janda*/
 .navbar {
-
   height: 100%;
   width: 130px;
   background-color: #9333CC;
   display: flex;
   flex-direction: column;
-  text-align: center;
 }
 
 .navbar a {
-  padding: 20px 20px 20px 20px;
+  height: 40px;
+  width: 130px;
   font-size: 12px;
+  text-align: center;
+  justify-content: center;
   letter-spacing: 4px;
   text-transform: uppercase;
 }
