@@ -5,6 +5,25 @@
   text-align: center;
   justify-content: center;
 }
-.start {
-  
+
+.buttons{
+  width: auto;
+  height: auto;
+}
+
+.head{
+  height: auto;
+  width: 1000px;
+}
+
+button{
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 30px;
+  width: 100px;
+}
+
+p {
+  background-color: grey;
+  height: 900px;
 }
