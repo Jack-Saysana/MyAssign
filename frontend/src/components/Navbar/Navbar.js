@@ -14,7 +14,7 @@ class Navbar extends Component {
           <a href="#"><i class="fas fa-question"></i>About</a>
           <a href="#"><i class="fas fa-calendar"></i>Calender</a>
           <a href="#"><i class="fas fa-list"></i>Lists</a>
-          <a href="#"><i class="fas fa-user"></i>Account</a>
+          <a href="#"><i class="fas fa-user"></i>Sign In</a>
         </body>
       </div>
     );
