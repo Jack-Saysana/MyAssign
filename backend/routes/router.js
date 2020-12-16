@@ -11,6 +11,7 @@ const Assignment = require('../models/assignmentModel').assignmentSchema;
     USER OBJECT TO SESSION.
 
     PARAMETERS:
+        - name (STRING)
         - username (STRING)
         - password (STRING)
     
