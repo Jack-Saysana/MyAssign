@@ -2,6 +2,8 @@ import React, { Component }from 'react';
 import './Navbar.css';
 import ScriptTag from 'react-script-tag';
 
+{/*Dason Janda*/}
+
 class Navbar extends Component {
   render() {
     return  (
