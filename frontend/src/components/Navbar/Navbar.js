@@ -1,12 +1,13 @@
 import React, { Component }from 'react';
 import './Navbar.css';
+import ScriptTag from 'react-script-tag';
 
 class Navbar extends Component {
   render() {
     return  (
-      <div>
+      <div >
         <head>
-          <script src="https://kit.fontawesome.com/3227043e4d.js" crossorigin="anonymous"></script>
+          <ScriptTag src="https://kit.fontawesome.com/3227043e4d.js" crossorigin="anonymous" />
         </head>
 
         <body class="navbar">
@@ -14,7 +15,7 @@ class Navbar extends Component {
           <a href="#"><i class="fas fa-question"></i>About</a>
           <a href="#"><i class="fas fa-calendar"></i>Calender</a>
           <a href="#"><i class="fas fa-list"></i>Lists</a>
-          <a href="#"><i class="fas fa-user"></i>Account</a>
+          <a href="#"><i class="fas fa-user"></i>Sign In</a>
         </body>
       </div>
     );

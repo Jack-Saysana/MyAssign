@@ -1,7 +1,11 @@
 /*Dason Janda*/
-.navbar {
+div{
+  padding-top: 100px;
   height: 100%;
   width: 130px;
+}
+.navbar {
+
   background-color: #9333CC;
   display: flex;
   flex-direction: column;
