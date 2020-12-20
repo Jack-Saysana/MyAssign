@@ -1,8 +1,8 @@
 import React from 'react';
-import {Redirect} from 'axios';
+import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 
-export default class signup extends React.Component {
+export default class Signup extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -11,6 +11,10 @@ export default class signup extends React.Component {
             password: '',
             redirect: '/signup'
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
     }
 
     handleNameChange(event) {
@@ -47,11 +51,12 @@ export default class signup extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit} >
                     <label>name</label>
-                    <input type="text" name="name" />
+                    <input type="text" name="name" onChange={this.handleNameChange} required/>
                     <label>Email</label>
-                    <input type="email" name="email" />
+                    <input type="email" name="email" onChange={this.handleEmailChange} required/>
                     <label>Password</label>
-                    <input type="password" name="password" />
+                    <input type="password" name="password" onChange={this.handlePasswordChange} required/>
+                    <input type="submit" value="signup" />
                 </form>
                 <Redirect to={this.state.redirect} />
             </div>

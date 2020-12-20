@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods = {
-    checkPassword: inputPass => { return bcrypt.compareSync(inputPass, this.password); },
+    checkPassword: (inputPass, userPass) => { return bcrypt.compareSync(inputPass, userPass); },
     hashPassword: plainTxt => { return bcrypt.hashSync(plainTxt, 10); }
 }
 

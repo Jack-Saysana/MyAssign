@@ -8,9 +8,11 @@ export default class Login extends React.Component {
         this.state = {
             email: "",
             password: "",
-            redirect: "/",
+            redirect: "/login",
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
     }
 
     handleEmailChange(event){
@@ -40,9 +42,9 @@ export default class Login extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>Email</label>
-                    <input type="text" name="email" onChange={this.handleEmailChange} />
+                    <input type="text" name="email" onChange={this.handleEmailChange} required/>
                     <label>Password</label>
-                    <input type="password" name="password" onChange={this.handlePasswordChange} />
+                    <input type="password" name="password" onChange={this.handlePasswordChange} required/>
                     <input type="submit" value="login" />
                 </form>
                 <Redirect to={this.state.redirect} />

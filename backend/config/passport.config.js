@@ -38,7 +38,7 @@ module.exports = passport => {
                     console.log(err);
                     return done(null, false);
                 }
-                if(!user || !user.checkPassword(password)){
+                if(!user || !user.checkPassword(password, user.password)){
                     return done(null, false);
                 }else{
                     return done(null, user);

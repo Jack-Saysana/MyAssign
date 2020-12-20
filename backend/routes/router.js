@@ -62,7 +62,7 @@ router.post('/signup', (req, res) => {
         400 - Bad Request/Client Error
 */
 router.post('/login', (req, res) => {
-    passport.authenticiate('local-login', (err, user) => {
+    passport.authenticate('local-login', (err, user) => {
         if (err) res.status(500).send({ error: err });
         if (user) {
             req.login(user, err => {
