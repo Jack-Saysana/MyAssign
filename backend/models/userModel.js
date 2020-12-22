@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const folder = require('./folderModel').folderSchema.schema;
 
+// Jack Saysana
+
 const userSchema = new mongoose.Schema({
     email: {
         type: String,

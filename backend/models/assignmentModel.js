@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+// Jack Saysana
+
 const assignmentSchema = new mongoose.Schema({
     title: {
         type: String,

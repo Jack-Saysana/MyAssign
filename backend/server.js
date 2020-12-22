@@ -7,6 +7,8 @@ const session = require('express-session');
 const passport = require('passport');
 require('./config/passport.config')(passport);
 
+// Jack Saysana
+
 //MongoDB set-up
 mongoose.connect('mongodb://localhost/MyAssign', {
     useNewUrlParser: true,

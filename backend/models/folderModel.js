@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const assignment = require('./assignmentModel').assignmentSchema.schema;
 
+// Jack Saysana
+
 const folderSchema = new mongoose.Schema({
     name: {
         type: String,
