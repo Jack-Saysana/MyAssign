@@ -6,6 +6,7 @@ module.exports = passport => {
     passport.deserializeUser((id, done) => {
         User.findById(id, (err, user) => done(err, user));
     });
+
     passport.use('local-signup', new LocalStrategy({
         passReqToCallback: true,
         usernameField: 'email'
@@ -29,13 +30,13 @@ module.exports = passport => {
             }
         }
     ));
+
     passport.use('local-login', new LocalStrategy({
         usernameField: 'email'
     },
         async (username, password, done) => {
             User.findOne({email: username}, (err, user) => {
                 if(err) {
-                    console.log(err);
                     return done(null, false);
                 }
                 if(!user || !user.checkPassword(password, user.password)){
@@ -45,5 +46,5 @@ module.exports = passport => {
                 }
             })
         }
-    ))
+    ));
 }

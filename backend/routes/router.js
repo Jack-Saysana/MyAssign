@@ -37,6 +37,8 @@ router.post('/signup', (req, res) => {
                     user: user
                 })
             });
+        }else{
+            res.send({ error: "Signup Error"});
         }
     })(req, res);
 });
@@ -71,6 +73,8 @@ router.post('/login', (req, res) => {
                     user: user
                 })
             });
+        }else{
+            res.status(404);
         }
     })(req, res);
 });
@@ -111,7 +115,9 @@ router.post('/logout', (req, res) => {
         - user authenticated
 
     RETURNS:
+        - _id (STRING) => user id
         - message (STRING) => status message
+        - redirect (STRING) => redirect link
 
     STATUS CODES:
         200 - Successful Request
@@ -120,7 +126,7 @@ router.post('/logout', (req, res) => {
         404 - User not found
 */
 router.post('/assignment', async (req, res) => {
-    User.findOne({ _id: req.body._id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
+    User.findOne({ _id: req.body._id }, async (err, user) => {
         if(err) res.status(400).send({ error: err });
         user.folders.id(req.body.folder).assignments.push(new Assignment({
             title: req.body.title,
@@ -133,7 +139,10 @@ router.post('/assignment', async (req, res) => {
         try {
             await user.save(err => {
                 if(err) res.status(500).send({ error: err });
-                res.status(200).send({ message: "Assignment successfully added" });
+                res.status(200).send({
+                    message: "Assignment successfully added",
+                    redirect: '/user'
+                });
             });
         }catch(err){
             res.status(500).send({ error: err });
@@ -158,6 +167,7 @@ router.post('/assignment', async (req, res) => {
 
     RETURNS:
         - message (STRING) => status message
+        - redirect (STRING) => redirect link
 
     STATUS CODES:
         200 - Successful Request
@@ -166,7 +176,7 @@ router.post('/assignment', async (req, res) => {
         404 - User not found
 */
 router.post('/updateAssignment', (req, res) => {
-    User.findOne({ _id: req.body._id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
+    User.findOne({ _id: req.body._id }, async (err, user) => {
         if(err) res.status(400).send({ error: err });
         user.folders.id(req.body.folder).assignments.id(req.body.assignment) = {
             title: req.body.title,
@@ -180,7 +190,10 @@ router.post('/updateAssignment', (req, res) => {
         try {
             await user.save(err => {
                 if(err) res.status(500).send({error: err});
-                res.status(200).send({message: "Assignment successfully updated"});
+                res.status(200).send({
+                    message: "Assignment successfully updated",
+                    redirect: '/user'
+                });
             });
         }catch(err){
             res.status(500).send({error: err});
@@ -203,6 +216,7 @@ router.post('/updateAssignment', (req, res) => {
 
     RETURNS:
         - message (STRING) => status message
+        - redirect (STRING) => redirect link
 
     STATUS CODES:
         200 - Successful Request
@@ -210,13 +224,16 @@ router.post('/updateAssignment', (req, res) => {
         400 - Bad Request/Client Error
 */
 router.delete('/deleteAssignment', (req, res) => {
-    User.findOne({ _id: req.body._id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
+    User.findOne({ _id: req.body._id }, async (err, user) => {
         if(err) res.status(400).send({error: err});
         user.folders.id(req.body.folder).assignments.id(req.body.assignment).remove();
         try {
             await user.save(err => {
                 if(err) res.status(500).send({error: err});
-                res.status(200).send({ message: "Assignment successfully deleted"});
+                res.status(200).send({
+                    message: "Assignment successfully deleted",
+                    redirect: '/user'
+                });
             })
         }catch(err){
             if(err) res.status(500).send({error: err});
@@ -239,6 +256,7 @@ router.delete('/deleteAssignment', (req, res) => {
 
     RETURNS:
         - message (STRING) => status message
+        - redirect (STRING) => redirect link
 
     STATUS CODES:
         200 - Successful Request
@@ -247,7 +265,7 @@ router.delete('/deleteAssignment', (req, res) => {
         404 - User not found
 */
 router.post('/folder', async (req, res) => {
-    User.findOne({ _id: req.body._id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
+    User.findOne({ _id: req.body._id }, async (err, user) => {
         if (err) res.status(500).send({ error: err });
         if (user.folders.length <= 10) {
             user.folders.push(new Folder({
@@ -256,7 +274,10 @@ router.post('/folder', async (req, res) => {
             try {
                 await user.save(err => {
                     if (err) res.status(500).send({ error: err });
-                    res.status(200).send({ message: "Folder successfully added" })
+                    res.status(200).send({
+                        message: "Folder successfully added",
+                        redirect: '/user'
+                    });
                 });
             } catch (err) {
                 res.status(500).send({ error: err });
@@ -282,6 +303,7 @@ router.post('/folder', async (req, res) => {
 
     RETURNS:
         - message (STRING) => status message
+        - redirect (STRING) => redirect link
 
     STATUS CODES:
         200 - Successful Request
@@ -290,7 +312,7 @@ router.post('/folder', async (req, res) => {
         404 - User not found
 */
 router.post('/updateFolder', (req, res) => {
-    User.findOne({ _id: req.body._id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
+    User.findOne({ _id: req.body._id }, async (err, user) => {
         if(err) res.status(400).send({ error: err });
         user.folders.id(req.body.folder) = {
             name: req.body.name
@@ -298,7 +320,10 @@ router.post('/updateFolder', (req, res) => {
         try {
             await user.save(err => {
                 if (err) res.status(500).send({ error: err });
-                res.status(200).send({ message: "Folder successfully updated" });
+                res.status(200).send({
+                    message: "Folder successfully updated",
+                    redirect: '/user'
+                });
             });
         }catch(err){
             if (err) res.status(500).send({ error: err });
@@ -320,6 +345,7 @@ router.post('/updateFolder', (req, res) => {
 
     RETURNS:
         - message (STRING) => status message
+        - redirect (STRING) => redirect link
 
     STATUS CODES:
         200 - Successful Request
@@ -328,13 +354,16 @@ router.post('/updateFolder', (req, res) => {
         404 - User not found
 */
 router.delete('/deleteFolder', (req, res) => {
-    User.findOne({ _id: req.body._id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
+    User.findOne({ _id: req.body._id }, async (err, user) => {
         if (err) res.status(400).send({ error: err });
         user.folders.id(req.body.folder).remove();
         try {
             await user.save(err => {
                 if (err) res.status(500).send({ error: err });
-                res.status(200).send({ message: "Folder successfully deleted" });
+                res.status(200).send({
+                    message: "Folder successfully deleted",
+                    redirect: '/user'
+                });
             })
         } catch (err) {
             if (err) res.status(500).send({ error: err });
@@ -348,8 +377,8 @@ router.delete('/deleteFolder', (req, res) => {
     RETURNS ALL OF THE ASSIGNMENTS INSIDE A USER'S FOLDER
 
     PARAMETERS:
-        - req.body._id (STRING) => user id
-        - req.body.folder (STRING) => folder id
+        - req.params.userId (STRING) => user id
+        - req.params.folderId (STRING) => folder id
 
     REQUIRES:
         - user authenticated
@@ -363,10 +392,12 @@ router.delete('/deleteFolder', (req, res) => {
         400 - Bad Request/Client Error
         404 - User not found
 */
-router.get('/assignments', (req, res) => {
-    User.findOne({ _id: req.body._id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
+router.get('/assignments/:userId/:folderId', (req, res) => {
+    User.findOne({ _id: req.params.userId }, async (err, user) => {
         if(err) res.status(400).send({ error: err });
-        res.status(200).send({ assignments: user.folders.id(req.body.folder).assignments });
+        res.status(200).send({
+            assignments: user.folders.id(req.params.folderId).assignments
+        });
     }).catch(err => {
         res.status(404).send({ error: err });
     });
@@ -376,15 +407,15 @@ router.get('/assignments', (req, res) => {
     RETURNS A SINGLE ASSIGNMENT
 
     PARAMETERS:
-        - req.body._id (STRING) => user id
-        - req.body.folder (STRING) => folder id
-        - req.body.assignment (STRING) => assignment id
+        - req.params.userId (STRING) => user id
+        - req.params.folderId (STRING) => folder id
+        - req.params.assignmentId (STRING) => assignment id
 
     REQUIRES:
         - user authenticated
 
     RETURNS:
-        - assignments (ARRAY) => all assignment objects inside the folder
+        - assignment (OBJECT) => individual assignment object
 
     STATUS CODES:
         200 - Successful Request
@@ -392,10 +423,12 @@ router.get('/assignments', (req, res) => {
         400 - Bad Request/Client Error
         404 - User not found
 */
-router.get('/assignment', (req, res) => {
-    User.findOne({ _id: req.body.id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
+router.get('/assignment/:userId/:folderId/:assignmentId', (req, res) => {
+    User.findOne({ _id: req.params.userId }, async (err, user) => {
         if(err) res.status(400).send({ error: err });
-        res.status(200).send({ assignment: user.folders.id(req.body.folder).assignments.id(req.body.assignment) });
+        res.status(200).send({
+            assignment: user.folders.id(req.params.folderId).assignments.id(req.params.assignmentId)
+        });
     }).catch(err => {
         res.status(404).send({ error: err });
     });
@@ -405,13 +438,13 @@ router.get('/assignment', (req, res) => {
     RETURNS A USER'S FOLDER
 
     PARAMETERS:
-        - req.body._id (STRING) => user id
+        - req.params.userId (STRING) => user id
 
     REQUIRES:
         - user authenticated
 
     RETURNS:
-        - message (STRING) => status message
+        - folders (ARRAY) => All folder objects belonging to user
 
     STATUS CODES:
         200 - Successful Request
@@ -419,10 +452,12 @@ router.get('/assignment', (req, res) => {
         400 - Bad Request/Client Error
         404 - User not found
 */
-router.get('/folders', (req, res) => {
-    User.findOne({ _id: req.body._id }, async (err, user) => { //CURRENTLY SET TO REQ.BODY._ID FOR TESTING PURPOSES
+router.get('/folders/:userId', (req, res) => {
+    User.findOne({ _id: req.params.userId }, async (err, user) => {
         if(err) res.status(400).send({ error: err });
-        res.status(200).send({ folders: user.folders });
+        res.status(200).send({
+            folders: user.folders
+        });
     }).catch(err => {
         res.status(404).send({ error: err });
     });
@@ -432,14 +467,14 @@ router.get('/folders', (req, res) => {
     RETURNS A SINGLE FOLDER
 
     PARAMETERS:
-        - req.body._id (STRING) => user id
-        - req.body.folder (STRING) => folder id
+        - req.params.userId (STRING) => user id
+        - req.params.folderId (STRING) => folder id
 
     REQUIRES:
         - user authenticated
 
     RETURNS:
-        - message (STRING) => status message
+        - folder (OBJECT) => folder object
 
     STATUS CODES:
         200 - Successful Request
@@ -447,10 +482,12 @@ router.get('/folders', (req, res) => {
         400 - Bad Request/Client Error
         404 - User not found
 */
-router.get('/folder', (req, res) => {
-    User.findOne({ _id: req.body._id }, async (err, user) => {
+router.get('/folder/:userId/:folderId', (req, res) => {
+    User.findOne({ _id: req.params.userId }, async (err, user) => {
         if(err) res.status(400).send({ error: err });
-        res.status(200).send({ folders: user.folders.id(req.body.folder) });
+        res.status(200).send({ 
+            folder: user.folders.id(req.body.folder)
+        });
     }).catch(err => {
         res.status(404).send({ error: err });
     });

@@ -2,6 +2,8 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 
+//Jack Saysana
+
 export default class Signup extends React.Component {
     constructor(props){
         super(props);
@@ -11,10 +13,17 @@ export default class Signup extends React.Component {
             password: '',
             redirect: '/signup'
         }
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
+    }
+
+    async componentDidMount() {
+        this.setState({
+            redirect: sessionStorage.getItem('user') ? '/user' : '/signup'
+        });
     }
 
     handleNameChange(event) {
@@ -42,7 +51,10 @@ export default class Signup extends React.Component {
             email: this.state.email,
             password: this.state.password
         }).then(res => {
-            console.log(res);
+            sessionStorage.setItem('user', res.data.user._id);
+            this.setState({
+                redirect: res.data.user ? '/user' : '/signup'
+            });
         });
     }
 
