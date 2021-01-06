@@ -1,6 +1,6 @@
 import React, { Component }from 'react';
 import './Navbar.css';
-//import ScriptTag from 'react-script-tag';
+import ScriptTag from 'react-script-tag';
 
 /*Dason Janda*/
 
