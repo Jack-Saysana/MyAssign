@@ -42,7 +42,7 @@ export default class FolderModal extends React.Component {
                     <form onSubmit={this.handleSubmit}>
                         <h2>New Folder</h2>
                         <label>Name</label>
-                        <input type="text" name="name" onChange={this.handleChange} />
+                        <input type="text" name="name" onChange={this.handleChange} required/>
                         <input type="submit" value="Create Folder" />
                     </form>
                 </div>
