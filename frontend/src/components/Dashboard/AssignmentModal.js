@@ -10,7 +10,7 @@ export default class AssignmentModal extends React.Component {
             folder:"",
             title:"",
             notes:"",
-            due:"",
+            due:undefined,
             reocurring: false,
 
             scheduleVisible: false
