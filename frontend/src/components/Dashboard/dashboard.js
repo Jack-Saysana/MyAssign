@@ -1,10 +1,10 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
-
+import './dashboard';
 import Folder from '../Folder/Folder';
-import NewFolder from './NewFolder';
-
+import FolderModal from './FolderModal';
+import AssignmentModal from './AssignmentModal';
 //Jack Saysana
 
 export default class Dashboard extends React.Component {
@@ -12,10 +12,13 @@ export default class Dashboard extends React.Component {
         super(props);
         this.state = {
             folders: [],
-            newFolderVisible: false,
+            AssignmentModalVisible: false,
+            FolderModalVisible: false,
             redirect: '/user'
         }
-        this.handleClick = this.handleClick.bind(this);
+        this.newAssingment = this.newAssingment.bind(this);
+        this.newFolder = this.newFolder.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     async componentDidMount(){
@@ -33,23 +36,39 @@ export default class Dashboard extends React.Component {
         }
     }
 
-    async handleClick(event){
+    newAssingment(event){
         event.preventDefault();
         this.setState({
-            newFolderVisible: true
+            AssignmentModalVisible: true
+        });
+    }
+
+    newFolder(event){
+        event.preventDefault();
+        this.setState({
+            FolderModalVisible: true
+        });
+    }
+
+    closeModal(){
+        this.setState({
+            FolderModalVisible: false,
+            AssignmentModalVisible: false
         });
     }
 
     render() {
         return(
             <div>
-                <button onClick={this.handleClick}>New Folder</button>
+                <FolderModal visible={this.state.FolderModalVisible} closeModal={this.closeModal} />
+                <AssignmentModal visible={this.state.AssignmentModalVisible} closeModal={this.closeModal} />
+                <button onClick={this.newAssingment}>New Assignment</button>
                 <div>
                     {this.state.folders.map(folder =>
                         <Folder name={folder.name} id={folder._id} key={folder._id} />
                     )}
                 </div>
-                <NewFolder visible={this.state.newFolderVisible} />
+                <button onClick={this.newFolder}>New Folder</button>
                 <Redirect to={this.state.redirect} />
             </div>
         )
