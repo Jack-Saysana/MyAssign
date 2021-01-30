@@ -1,5 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import './AssignmentModal.css';
+import './global.css';
+import './AssignmentModal.css';
 
 //Jack Saysana
 
@@ -16,6 +19,7 @@ export default class AssignmentModal extends React.Component {
             scheduleVisible: false
         }
 
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.schedule = this.schedule.bind(this);
@@ -26,11 +30,13 @@ export default class AssignmentModal extends React.Component {
         event.preventDefault();
         await axios.post('http://localhost:5000/assignment', {
             _id: sessionStorage.getItem('user'),
+            folder: this.state.folder,
             title: this.state.title,
             notes: this.state.notes,
             due: this.state.due ? this.state.due : undefined,
             reocurring: this.state.reocurring
         });
+        window.location.reload();
     }
 
     closeModal(event){
@@ -72,12 +78,16 @@ export default class AssignmentModal extends React.Component {
 
         if(this.props.visible){
             return(
-                <div>
-                    <button onClick={this.closeModal}>Close</button>
+                <div class="container modal">
+                    <button class="close" onClick={this.closeModal}>Close</button>
                     <form onSubmit={this.handleSubmit}>
                         <h2>New Assignment</h2>
                         <label>Folder</label>
-                        <input type="" name="folder" required/>
+                        <select name="folder" onChange={this.handleChange}>
+                            {this.props.folders.map(folder => 
+                                <option value={folder._id} key={folder._id}>{folder.name}</option>    
+                            )}
+                        </select>
                         <label>Title</label>
                         <input type="text" name="title" onChange={this.handleChange} required/>
                         <label>Notes</label>

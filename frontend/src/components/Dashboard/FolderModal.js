@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import './global.css';
+import './FolderModal.css';
 
 //Jack Saysana
 
@@ -32,13 +34,14 @@ export default class FolderModal extends React.Component {
             _id: sessionStorage.getItem('user'),
             name: this.state.name
         });
+        window.location.reload();
     }
     
     render(){
         if(this.props.visible){
             return(
-                <div>
-                    <button onClick={this.closeModal}>Close</button>
+                <div class="container modal">
+                    <button class="close" onClick={this.closeModal}>Close</button>
                     <form onSubmit={this.handleSubmit}>
                         <h2>New Folder</h2>
                         <label>Name</label>

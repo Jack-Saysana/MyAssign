@@ -5,6 +5,8 @@ import './dashboard';
 import Folder from '../Folder/Folder';
 import FolderModal from './FolderModal';
 import AssignmentModal from './AssignmentModal';
+import './global.css';
+
 //Jack Saysana
 
 export default class Dashboard extends React.Component {
@@ -39,15 +41,19 @@ export default class Dashboard extends React.Component {
     newAssingment(event){
         event.preventDefault();
         this.setState({
-            AssignmentModalVisible: true
+            AssignmentModalVisible: true,
+            FolderModalVisible: false
         });
+        document.getElementsByClassName("blur")[0].style.display="block";
     }
 
     newFolder(event){
         event.preventDefault();
         this.setState({
-            FolderModalVisible: true
+            FolderModalVisible: true,
+            AssignmentModalVisible: false
         });
+        document.getElementsByClassName("blur")[0].style.display = "block";
     }
 
     closeModal(){
@@ -55,13 +61,12 @@ export default class Dashboard extends React.Component {
             FolderModalVisible: false,
             AssignmentModalVisible: false
         });
+        document.getElementsByClassName("blur")[0].style.display = "none";
     }
 
     render() {
         return(
-            <div>
-                <FolderModal visible={this.state.FolderModalVisible} closeModal={this.closeModal} />
-                <AssignmentModal visible={this.state.AssignmentModalVisible} closeModal={this.closeModal} />
+            <div id="dashboard">
                 <button onClick={this.newAssingment}>New Assignment</button>
                 <div>
                     {this.state.folders.map(folder =>
@@ -70,6 +75,9 @@ export default class Dashboard extends React.Component {
                 </div>
                 <button onClick={this.newFolder}>New Folder</button>
                 <Redirect to={this.state.redirect} />
+                <div class="blur"></div>
+                <FolderModal visible={this.state.FolderModalVisible} closeModal={this.closeModal} />
+                <AssignmentModal visible={this.state.AssignmentModalVisible} closeModal={this.closeModal} folders={this.state.folders} />
             </div>
         )
     }

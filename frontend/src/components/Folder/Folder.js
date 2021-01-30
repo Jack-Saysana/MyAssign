@@ -23,11 +23,11 @@ export default class Folder extends React.Component {
         return(
             <div>
                 <label>{this.props.name}</label>
-                {<ul>
+                <ul>
                     {this.state.assignments.map(assignment =>
                         <li key={assignment._id} >{assignment.title}</li>
                     )}
-                </ul>}
+                </ul>
             </div>
         )
     }
