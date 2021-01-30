@@ -5,6 +5,7 @@ import Home from '../Home/Home';
 import Signup from '../Signup/signup';
 import Login from '../Login/login';
 import Dashboard from '../Dashboard/dashboard';
+import Logout from '../Logout/logout';
 /*Dason Janda*/
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/user" component={Dashboard} />
+          <Route path="/logout" component={Logout} />
         </Switch>
       </BrowserRouter>
   );

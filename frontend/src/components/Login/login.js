@@ -1,6 +1,7 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
+import './login.css';
 
 //Jack Saysana
 
@@ -52,12 +53,17 @@ export default class Login extends React.Component {
     render() {
         return(
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form className="form" onSubmit={this.handleSubmit}>
+                    <h2 className="welcome">Welcome Back</h2>
+                    <span className="sub-welcome">Login to continue</span>
                     <label>Email</label>
-                    <input type="text" name="email" onChange={this.handleEmailChange} required/>
+                    <input className="field" type="text" name="email" onChange={this.handleEmailChange} required/>
                     <label>Password</label>
-                    <input type="password" name="password" onChange={this.handlePasswordChange} required/>
-                    <input type="submit" value="login" />
+                    <input className="field" type="password" name="password" onChange={this.handlePasswordChange} required/>
+                    <div className="signup">
+                        <span>Don't have an account? </span><a href="/signup">Sign Up</a>
+                    </div>
+                    <input className="submit" type="submit" value="login" />
                 </form>
                 <Redirect to={this.state.redirect} />
             </div>
