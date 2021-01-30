@@ -1,6 +1,7 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
+import './signup.css';
 
 //Jack Saysana
 
@@ -61,7 +62,7 @@ export default class Signup extends React.Component {
     render() {
         return(
             <div>
-                <form onSubmit={this.handleSubmit} >
+                <form className="container form" onSubmit={this.handleSubmit} >
                     <label>name</label>
                     <input type="text" name="name" onChange={this.handleNameChange} required/>
                     <label>Email</label>

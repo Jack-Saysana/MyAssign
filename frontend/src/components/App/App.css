@@ -2,14 +2,3 @@
 .App {
   text-align: center;
 }
-
-h1 {
-  width: 100%;
-  height: auto;
-  padding: 20px 10px 20px 10px;
-  text-align: center;
-  background-color: #9333CC;
-  font-family: Poppins, sans-serif;
-  font-size: 1.8rem;
-  color: #fff;
-}
