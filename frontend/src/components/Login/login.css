@@ -8,7 +8,7 @@
     border: 1px solid  #edebeb;
     border-radius: .25rem;
     padding: 1rem;
-    box-shadow: 0px 0px 2px 3px rgba(0, 0 ,0, .1);
+    box-shadow: 0px 0px 2px 1px rgba(0, 0 ,0, .1);
 }
 
 .welcome {
@@ -24,16 +24,29 @@
 .field {
     width: 100%;
     height: 2rem;
-    border: 1px solid #edebeb;
+    font-size: 1rem;
+    border: 0px 0px 1px 0px solid #ccc;
     border-radius: .25rem;
 }
 
-.signup {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+.field::placeholder{
+    color: #ababab;
+}
+
+.field:focus{
+    outline: none;
+    border: 2px solid #574ae2;
+    border-radius: .25rem;
+    transition-duration: .4s;
+}
+
+.forgot-pass{
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }
 
 .submit {
+    color: white;
     background-color: #574ae2;
     display: block;
     width: 100%;
@@ -44,4 +57,11 @@
 
 .submit:hover {
     background-color: #443ab0;
+    color: #edebeb;
+    transition-duration: .4s;
+}
+
+.signup {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }

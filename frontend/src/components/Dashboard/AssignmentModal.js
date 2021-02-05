@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './AssignmentModal.css';
-import './global.css';
-import './AssignmentModal.css';
+import '../App/global.css';
 
 //Jack Saysana
 
@@ -89,9 +88,9 @@ export default class AssignmentModal extends React.Component {
                             )}
                         </select>
                         <label>Title</label>
-                        <input type="text" name="title" onChange={this.handleChange} required/>
+                        <input className="field" type="text" name="title" onChange={this.handleChange} required/>
                         <label>Notes</label>
-                        <input type="text" name="notes" onChange={this.handleChange} />
+                        <input className="field" type="text" name="notes" onChange={this.handleChange} />
                         <button onClick={this.schedule}>Schedule</button>
                         {schedule}
                         <input type="submit" value="Create Assignment" />

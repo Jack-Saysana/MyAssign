@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import './global.css';
+import '../App/global.css';
 import './FolderModal.css';
 
 //Jack Saysana

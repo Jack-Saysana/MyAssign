@@ -57,13 +57,16 @@ export default class Login extends React.Component {
                     <h2 className="welcome">Welcome Back</h2>
                     <span className="sub-welcome">Login to continue</span>
                     <label>Email</label>
-                    <input className="field" type="text" name="email" onChange={this.handleEmailChange} required/>
+                    <input className="field" type="email" name="email" onChange={this.handleEmailChange} placeholder="Email Address" required/>
                     <label>Password</label>
-                    <input className="field" type="password" name="password" onChange={this.handlePasswordChange} required/>
+                    <input className="field" type="password" name="password" onChange={this.handlePasswordChange} placeholder="Password" required/>
+                    <div class="forgot-pass">
+                        <a>Forgot your password?</a>
+                    </div>
+                    <input className="submit" type="submit" value="login" />
                     <div className="signup">
                         <span>Don't have an account? </span><a href="/signup">Sign Up</a>
                     </div>
-                    <input className="submit" type="submit" value="login" />
                 </form>
                 <Redirect to={this.state.redirect} />
             </div>

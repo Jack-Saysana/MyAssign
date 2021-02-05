@@ -5,7 +5,7 @@ import './dashboard';
 import Folder from '../Folder/Folder';
 import FolderModal from './FolderModal';
 import AssignmentModal from './AssignmentModal';
-import './global.css';
+import '../App/global.css';
 
 //Jack Saysana
 
