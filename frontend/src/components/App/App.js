@@ -1,11 +1,10 @@
 import React from 'react';
-import './App.css';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Home from '../Home/Home';
-import Signup from '../Signup/signup';
-import Login from '../Login/login';
+import Signup from '../Authentication/Signup';
+import Login from '../Authentication/Login';
 import Dashboard from '../Dashboard/dashboard';
-import Logout from '../Logout/logout';
+import Logout from '../Authentication/Logout';
 /*Dason Janda*/
 
 function App() {

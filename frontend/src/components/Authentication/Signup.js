@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
-import './signup.css';
+import './authentication.css';
 
 //Jack Saysana
 
@@ -62,14 +62,22 @@ export default class Signup extends React.Component {
     render() {
         return(
             <div>
-                <form className="container form" onSubmit={this.handleSubmit} >
-                    <label>name</label>
-                    <input type="text" name="name" onChange={this.handleNameChange} required/>
-                    <label>Email</label>
-                    <input type="email" name="email" onChange={this.handleEmailChange} required/>
-                    <label>Password</label>
-                    <input type="password" name="password" onChange={this.handlePasswordChange} required/>
-                    <input type="submit" value="signup" />
+                <div className="auth-grad"></div>
+                <form className="form" onSubmit={this.handleSubmit} >
+                    <div className="waves">
+                        <div className="wave"></div>
+                        <div className="wave"></div>
+                    </div>
+                    <p className="logo">MA</p>
+                    <h2 className="welcome">Welcome</h2>
+                    <span className="sub-welcome">Create your MyAssign account</span>
+                    <input className="field" type="text" name="name" autoComplete="off" onChange={this.handleNameChange} placeholder="Name" required/>
+                    <input className="field" type="email" name="email" autoComplete="off" onChange={this.handleEmailChange} placeholder="Email Address" required/>
+                    <input className="field" type="password" name="password" onChange={this.handlePasswordChange} placeholder="Password" required/>
+                    <input className="submit" type="submit" value="Sign Up" />
+                    <div className="redirect">
+                        <span>Already have an account?</span><a href="/login">Login</a>
+                    </div>
                 </form>
                 <Redirect to={this.state.redirect} />
             </div>
