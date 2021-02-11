@@ -21,7 +21,7 @@ export default class Folder extends React.Component {
     
     render(){
         return(
-            <div>
+            <div className="folder">
                 <label>{this.props.name}</label>
                 <ul>
                     {this.state.assignments.map(assignment =>

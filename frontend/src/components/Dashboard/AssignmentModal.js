@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import './AssignmentModal.css';
+import './dashboard.css';
 import '../App/global.css';
 
 //Jack Saysana
@@ -77,20 +77,20 @@ export default class AssignmentModal extends React.Component {
 
         if(this.props.visible){
             return(
-                <div class="container modal">
-                    <button class="close" onClick={this.closeModal}>Close</button>
+                <div className="container modal">
+                    <button className="close" onClick={this.closeModal}>Close</button>
                     <form onSubmit={this.handleSubmit}>
                         <h2>New Assignment</h2>
                         <label>Folder</label>
                         <select name="folder" onChange={this.handleChange}>
-                            {this.props.folders.map(folder => 
-                                <option value={folder._id} key={folder._id}>{folder.name}</option>    
+                            {this.props.folders.map(folder =>
+                                <option value={folder._id} key={folder._id}>{folder.name}</option>
                             )}
                         </select>
                         <label>Title</label>
-                        <input className="field" type="text" name="title" onChange={this.handleChange} required/>
+                        <input className="field" type="text" name="title" autoComplete="off" onChange={this.handleChange} required />
                         <label>Notes</label>
-                        <input className="field" type="text" name="notes" onChange={this.handleChange} />
+                        <input className="field" type="text" name="notes" autoComplete="off" onChange={this.handleChange} />
                         <button onClick={this.schedule}>Schedule</button>
                         {schedule}
                         <input type="submit" value="Create Assignment" />

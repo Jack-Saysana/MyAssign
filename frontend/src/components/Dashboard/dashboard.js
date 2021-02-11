@@ -44,16 +44,17 @@ export default class Dashboard extends React.Component {
             AssignmentModalVisible: true,
             FolderModalVisible: false
         });
-        document.getElementsByClassName("blur")[0].style.display="block";
+        document.getElementsByClassName("blur")[0].style.display = "block";
+        document.getElementsByClassName("blur")[0].style.transitionDuration = ".2s";
     }
 
-    newFolder(event){
-        event.preventDefault();
+    newFolder(){
         this.setState({
             FolderModalVisible: true,
             AssignmentModalVisible: false
         });
         document.getElementsByClassName("blur")[0].style.display = "block";
+        document.getElementsByClassName("blur")[0].style.transitionDuration = ".2s";
     }
 
     closeModal(){
@@ -62,20 +63,33 @@ export default class Dashboard extends React.Component {
             AssignmentModalVisible: false
         });
         document.getElementsByClassName("blur")[0].style.display = "none";
+        document.getElementsByClassName("blur")[0].style.transitionDuration = ".2s";
     }
 
     render() {
         return(
             <div id="dashboard">
                 <button onClick={this.newAssingment}>New Assignment</button>
-                <div>
+                <div className="side-bar">
+                    <button onClick={this.newFolder}>New Folder</button>
+                    <h3 className="side-title">Folders</h3>
+                    <div className="add-folder"></div>
                     {this.state.folders.map(folder =>
-                        <Folder name={folder.name} id={folder._id} key={folder._id} />
+                        <div className="folder-select">
+                            <p>
+                                {folder.name}
+                            </p>
+                        </div>
                     )}
                 </div>
-                <button onClick={this.newFolder}>New Folder</button>
+                <div className="assignment-display">
+                    {this.state.folders.map(folder => 
+                        <Folder name={folder.name} id={folder._id} key={folder._id} />  
+                    )}
+                </div>
+
                 <Redirect to={this.state.redirect} />
-                <div class="blur"></div>
+                <div class="blur" onClick={this.closeModal}></div>
                 <FolderModal visible={this.state.FolderModalVisible} closeModal={this.closeModal} />
                 <AssignmentModal visible={this.state.AssignmentModalVisible} closeModal={this.closeModal} folders={this.state.folders} />
             </div>

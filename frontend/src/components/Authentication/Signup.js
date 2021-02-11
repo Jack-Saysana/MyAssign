@@ -61,7 +61,7 @@ export default class Signup extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="auth-page">
                 <div className="auth-grad"></div>
                 <form className="form" onSubmit={this.handleSubmit} >
                     <div className="waves">
