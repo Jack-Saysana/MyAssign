@@ -26,14 +26,28 @@
     padding-left: 1rem;
 }
 
-#dashboard .add-folder {
+#dashboard .add-folder-button{
     width: 24px;
     height: 24px;
-    background: url("../../images/plus.svg");
+    background: url("../../images/plus-ccc.svg");
+}
+
+#dashboard .add-folder{
+    font-family: inherit;
+    font-size: 1rem;
+    border: none;
+    background: none;
 }
 
 #dashboard .add-folder:hover {
-    color: #443ab0;
+    border-bottom: 2px solid #ccc;
+    transition-duration: .1s;
+}
+
+#dashboard .add-folder:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(162, 162, 162);
+    transition-duration: .2s;
 }
 
 #dashboard .side-bar {
@@ -47,14 +61,8 @@
 }
 
 #dashboard .folder-select {
-    padding-left: 1rem;
-    height: 2rem;
+    margin-left: calc(10% + 2px);
     width: 100%;
-}
-
-#dashboard .folder-select:hover {
-    background-color:#faf9f9;
-    transition-duration: .2s;
 }
 
 #dashboard .folder {

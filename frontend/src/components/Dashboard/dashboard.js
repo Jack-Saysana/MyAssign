@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 import './dashboard';
 import Folder from '../Folder/Folder';
-import FolderModal from './FolderModal';
+import FolderAdd from './FolderAdd';
 import AssignmentModal from './AssignmentModal';
 import '../App/global.css';
 
@@ -71,9 +71,7 @@ export default class Dashboard extends React.Component {
             <div id="dashboard">
                 <button onClick={this.newAssingment}>New Assignment</button>
                 <div className="side-bar">
-                    <button onClick={this.newFolder}>New Folder</button>
                     <h3 className="side-title">Folders</h3>
-                    <div className="add-folder"></div>
                     {this.state.folders.map(folder =>
                         <div className="folder-select">
                             <p>
@@ -81,6 +79,7 @@ export default class Dashboard extends React.Component {
                             </p>
                         </div>
                     )}
+                    <FolderAdd />
                 </div>
                 <div className="assignment-display">
                     {this.state.folders.map(folder => 
@@ -89,8 +88,7 @@ export default class Dashboard extends React.Component {
                 </div>
 
                 <Redirect to={this.state.redirect} />
-                <div class="blur" onClick={this.closeModal}></div>
-                <FolderModal visible={this.state.FolderModalVisible} closeModal={this.closeModal} />
+                <div className="blur" onClick={this.closeModal}></div>
                 <AssignmentModal visible={this.state.AssignmentModalVisible} closeModal={this.closeModal} folders={this.state.folders} />
             </div>
         )
