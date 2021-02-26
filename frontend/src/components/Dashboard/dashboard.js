@@ -15,11 +15,9 @@ export default class Dashboard extends React.Component {
         this.state = {
             folders: [],
             AssignmentModalVisible: false,
-            FolderModalVisible: false,
             redirect: '/user'
         }
         this.newAssingment = this.newAssingment.bind(this);
-        this.newFolder = this.newFolder.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
 
@@ -41,17 +39,7 @@ export default class Dashboard extends React.Component {
     newAssingment(event){
         event.preventDefault();
         this.setState({
-            AssignmentModalVisible: true,
             FolderModalVisible: false
-        });
-        document.getElementsByClassName("blur")[0].style.display = "block";
-        document.getElementsByClassName("blur")[0].style.transitionDuration = ".2s";
-    }
-
-    newFolder(){
-        this.setState({
-            FolderModalVisible: true,
-            AssignmentModalVisible: false
         });
         document.getElementsByClassName("blur")[0].style.display = "block";
         document.getElementsByClassName("blur")[0].style.transitionDuration = ".2s";
@@ -59,7 +47,6 @@ export default class Dashboard extends React.Component {
 
     closeModal(){
         this.setState({
-            FolderModalVisible: false,
             AssignmentModalVisible: false
         });
         document.getElementsByClassName("blur")[0].style.display = "none";

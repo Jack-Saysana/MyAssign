@@ -27,21 +27,29 @@
 }
 
 #dashboard .add-folder-button{
+    position: absolute;
+    margin-left: 1rem;
     width: 24px;
     height: 24px;
     background: url("../../images/plus-ccc.svg");
 }
 
+#dashboard .add-folder-button:hover{
+    background: url("../../images/plus-162-162-162.svg");
+    transition-duration: .2s;
+}
+
 #dashboard .add-folder{
+    margin-left: calc(1rem + 24px);
     font-family: inherit;
     font-size: 1rem;
     border: none;
     background: none;
+    width: calc(100% - 5rem);
 }
 
 #dashboard .add-folder:hover {
     border-bottom: 2px solid #ccc;
-    transition-duration: .1s;
 }
 
 #dashboard .add-folder:focus {
