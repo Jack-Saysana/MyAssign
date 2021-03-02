@@ -43,8 +43,8 @@ export default class FolderAdd extends React.Component {
     render(){
         return(
             <div>
-                <input className="add-folder" type="text" name="name" placeholder="Add Folder" autoComplete="off" onKeyDown={this.enterListen} onChange={this.handleChange} />
-                <div className="add-folder-button" onClick={this.handleSubmit} />
+                <input className="add-folder add-elem" type="text" name="name" placeholder="New Folder" autoComplete="off" onKeyDown={this.enterListen} onChange={this.handleChange} />
+                <div className="add-folder-button add-elem-button" onClick={this.handleSubmit} />
             </div>
         );
     }

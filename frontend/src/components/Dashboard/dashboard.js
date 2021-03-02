@@ -2,7 +2,7 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 import './dashboard';
-import Folder from '../Folder/Folder';
+import Folder from './Folder';
 import FolderAdd from './FolderAdd';
 import AssignmentModal from './AssignmentModal';
 import '../App/global.css';

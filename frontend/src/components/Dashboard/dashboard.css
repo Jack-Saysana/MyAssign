@@ -34,7 +34,7 @@
     background: url("../../images/plus-ccc.svg");
 }
 
-#dashboard .add-folder-button:hover{
+#dashboard .add-elem-button:hover{
     background: url("../../images/plus-443ab0.svg");
     transition-duration: .2s;
 }
@@ -49,17 +49,17 @@
     width: calc(100% - 5rem);
 }
 
-#dashboard .add-folder:hover {
+#dashboard .add-elem:hover {
     border-bottom: 2px solid #ccc;
 }
 
-#dashboard .add-folder:focus {
+#dashboard .add-elem:focus {
     outline: none;
     border-bottom: 2px solid #443ab0;
     transition-duration: .2s;
 }
 
-#dashboard .add-folder:focus + .add-folder-button {
+#dashboard .add-elem:focus + .add-elem-button {
     background: url("../../images/plus-443ab0.svg");
     transition-duration: .2s;
 }
@@ -79,8 +79,39 @@
     width: 100%;
 }
 
+#dashboard .assignment-display {
+    margin-left: 19rem;
+}
+
 #dashboard .folder {
-    margin-left: calc(15% + 2rem);
+    width: calc(100% - 4rem);
+    background-color: #edebeb;
+    padding: 1rem;
+    padding-bottom: 3rem;
+    margin-bottom: 2rem;
+    border-radius: .5rem;
+}
+
+#dashboard .folder h3 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+}
+
+#dashboard .add-assignment {
+    position: absolute;
+    margin-left: 25px;
+    font-family: inherit;
+    font-size: 1rem;
+    border: none;
+    background: none;
+    width: calc(100% - 35rem);
+}
+
+#dashboard .add-assignment-button {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: url("../../images/plus-ccc.svg");
 }
 
 #dashboard .blur {

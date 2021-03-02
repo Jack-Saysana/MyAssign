@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import AssignmentAdd from './AssignmentAdd';
 
 //Jack Saysana
 
@@ -22,11 +23,16 @@ export default class Folder extends React.Component {
     render(){
         return(
             <div className="folder">
-                <label>{this.props.name}</label>
+                <h3>{this.props.name}</h3>
                 <ul>
                     {this.state.assignments.map(assignment =>
                         <li key={assignment._id} >{assignment.title}</li>
                     )}
+                    <p>test</p>
+                    <p>test</p>
+                    <p>test</p>
+                    <p>test</p>
+                    <AssignmentAdd folder={this.props.id} />
                 </ul>
             </div>
         )

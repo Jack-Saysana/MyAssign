@@ -8,8 +8,14 @@ const assignmentSchema = new mongoose.Schema({
         required: true
     },
     annotations: {
-        notes: String,
-        due: Date,
+        notes: {
+            type: String,
+            default: ""
+        },
+        due: {
+            type: Date,
+            default: null
+        },
         reoccuring: {
             type: Boolean,
             default: false
