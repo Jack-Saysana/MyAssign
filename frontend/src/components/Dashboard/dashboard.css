@@ -35,11 +35,12 @@
 }
 
 #dashboard .add-folder-button:hover{
-    background: url("../../images/plus-162-162-162.svg");
+    background: url("../../images/plus-443ab0.svg");
     transition-duration: .2s;
 }
 
 #dashboard .add-folder{
+    position: absolute;
     margin-left: calc(1rem + 24px);
     font-family: inherit;
     font-size: 1rem;
@@ -54,13 +55,18 @@
 
 #dashboard .add-folder:focus {
     outline: none;
-    border-bottom: 2px solid rgb(162, 162, 162);
+    border-bottom: 2px solid #443ab0;
+    transition-duration: .2s;
+}
+
+#dashboard .add-folder:focus + .add-folder-button {
+    background: url("../../images/plus-443ab0.svg");
     transition-duration: .2s;
 }
 
 #dashboard .side-bar {
     position: fixed;
-    width: 15%;
+    width: 17rem;
     height: 100%;
     top: 0px;
     left: 0px;
@@ -69,7 +75,7 @@
 }
 
 #dashboard .folder-select {
-    margin-left: calc(10% + 2px);
+    margin-left: calc(1rem + 2px);
     width: 100%;
 }
 

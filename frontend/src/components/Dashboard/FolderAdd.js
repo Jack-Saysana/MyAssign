@@ -30,7 +30,8 @@ export default class FolderAdd extends React.Component {
                 name: this.state.name
             });
         }
-        this.setState();
+        document.getElementsByClassName('add-folder')[0].value = "";
+        this.props.refreshFolders();
     }
 
     enterListen(event){
@@ -42,8 +43,8 @@ export default class FolderAdd extends React.Component {
     render(){
         return(
             <div>
-                <div className="add-folder-button" onClick={this.handleSubmit}></div>
                 <input className="add-folder" type="text" name="name" placeholder="Add Folder" autoComplete="off" onKeyDown={this.enterListen} onChange={this.handleChange} />
+                <div className="add-folder-button" onClick={this.handleSubmit} />
             </div>
         );
     }

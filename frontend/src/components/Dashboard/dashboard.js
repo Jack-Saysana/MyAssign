@@ -19,6 +19,7 @@ export default class Dashboard extends React.Component {
         }
         this.newAssingment = this.newAssingment.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.refreshFolders = this.refreshFolders.bind(this);
     }
 
     async componentDidMount(){
@@ -34,6 +35,14 @@ export default class Dashboard extends React.Component {
                 redirect: '/login'
             });
         }
+    }
+
+    async refreshFolders(){
+        await axios.get(`http://localhost:5000/folders/${sessionStorage.getItem('user')}`).then(res => {
+            this.setState({
+                folders: res.data.folders
+            });
+        });
     }
 
     newAssingment(event){
@@ -66,7 +75,7 @@ export default class Dashboard extends React.Component {
                             </p>
                         </div>
                     )}
-                    <FolderAdd />
+                    <FolderAdd refreshFolders={this.refreshFolders} />
                 </div>
                 <div className="assignment-display">
                     {this.state.folders.map(folder => 
