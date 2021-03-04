@@ -10,6 +10,7 @@ export default class Folder extends React.Component {
         this.state={
             assignments: []
         }
+        this.closeAnnoField = this.closeAnnoField.bind(this);
     }
 
     async componentDidMount(){
@@ -20,6 +21,15 @@ export default class Folder extends React.Component {
         });
     }
     
+    closeAnnoField(event){
+        event.preventDefault();
+        document.getElementsByClassName("annotations-field")[this.props.index].style.display = "";
+        document.getElementsByClassName("annotations-field")[this.props.index].style.marginTop = "";
+        document.getElementsByClassName("folder")[this.props.index].style.paddingBottom = "";
+        document.getElementsByClassName("annotations")[this.props.index].style.visibility = "";
+        document.getElementsByClassName("add-assignment")[this.props.index].style.borderBottom = "";
+    }
+
     render(){
         return(
             <div className="folder">
@@ -33,6 +43,13 @@ export default class Folder extends React.Component {
                     <p>test</p>
                     <p>test</p>
                     <AssignmentAdd folder={this.props.id} index={this.props.index} />
+                    <div className="annotations-field">
+                        <button onClick={this.closeAnnoField}>close</button>
+                        <p>test</p>
+                        <p>test</p>
+                        <p>test</p>
+                        <p>test</p>
+                    </div>
                 </ul>
             </div>
         )

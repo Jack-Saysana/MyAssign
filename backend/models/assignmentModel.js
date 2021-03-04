@@ -15,10 +15,6 @@ const assignmentSchema = new mongoose.Schema({
         due: {
             type: Date,
             default: null
-        },
-        reoccuring: {
-            type: Boolean,
-            default: false
         }
     },
     completed: {

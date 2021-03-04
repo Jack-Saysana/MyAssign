@@ -132,8 +132,7 @@ router.post('/assignment', async (req, res) => {
             title: req.body.title,
             annotations: {
                 notes: (req.body.notes ? req.body.notes : ""),
-                due: (req.body.due ? req.body.due : undefined),
-                reoccuring: req.body.reoccuring
+                due: (req.body.due ? req.body.due : undefined)
             }
         }));
         try {

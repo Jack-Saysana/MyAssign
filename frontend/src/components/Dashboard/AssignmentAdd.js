@@ -8,13 +8,13 @@ export default class AssignmentAdd extends React.Component {
             title: "",
             annotations: {
                 notes: "",
-                due: null,
-                reoccuring: false
+                due: null
             }
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.enterListen = this.enterListen.bind(this);
+        this.showAnnoField = this.showAnnoField.bind(this);
     }
 
     handleSubmit(event){
@@ -26,8 +26,7 @@ export default class AssignmentAdd extends React.Component {
                 title: this.state.title,
                 annotations: {
                     notes: this.state.notes,
-                    due: this.state.due,
-                    reoccuring: this.state.reoccuring
+                    due: this.state.due
                 }
             })
         }
@@ -46,15 +45,23 @@ export default class AssignmentAdd extends React.Component {
         }
     }
 
+    showAnnoField(event){
+        event.preventDefault();
+        document.getElementsByClassName("annotations-field")[this.props.index].style.display = "block";
+        document.getElementsByClassName("annotations-field")[this.props.index].style.marginTop = "3rem";
+        document.getElementsByClassName("folder")[this.props.index].style.paddingBottom = "0rem";
+        document.getElementsByClassName("annotations")[this.props.index].style.visibility = "visible";
+        document.getElementsByClassName("add-assignment")[this.props.index].style.borderBottom = "2px solid #443ab0";
+    }
+
     render(){
         return(
             <div>
                 <input className="add-assignment add-elem" type="text" name="title" placeholder="New Assignment" autoComplete="off" onBlur={this.toggleAnnotations} onKeyDown={this.enterListen} onChange={this.handleChange} ></input>
                 <div className="add-assignment-button add-elem-button" onClick={this.handleSubmit} />
                 <div className="annotations">
-                    <div className="add-notes" />
-                    <div className="add-due" />
-                    <div className="add-reocurring" />
+                    <div className="add-due" onClick={this.showAnnoField} />
+                    <div className="add-notes" onClick={this.showAnnoField} />
                 </div>
             </div>
         )
