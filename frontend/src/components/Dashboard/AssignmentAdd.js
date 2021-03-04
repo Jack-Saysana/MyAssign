@@ -49,11 +49,11 @@ export default class AssignmentAdd extends React.Component {
     render(){
         return(
             <div>
-                <input className="add-assignment add-elem" type="text" name="title" placeholder="New Assignment" autoComplete="off" onKeyDown={this.enterListen} onChange={this.handleChange} ></input>
+                <input className="add-assignment add-elem" type="text" name="title" placeholder="New Assignment" autoComplete="off" onBlur={this.toggleAnnotations} onKeyDown={this.enterListen} onChange={this.handleChange} ></input>
                 <div className="add-assignment-button add-elem-button" onClick={this.handleSubmit} />
                 <div className="annotations">
                     <div className="add-notes" />
-                    <div className="add-deadline" />
+                    <div className="add-due" />
                     <div className="add-reocurring" />
                 </div>
             </div>

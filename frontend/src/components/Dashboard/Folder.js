@@ -32,7 +32,7 @@ export default class Folder extends React.Component {
                     <p>test</p>
                     <p>test</p>
                     <p>test</p>
-                    <AssignmentAdd folder={this.props.id} />
+                    <AssignmentAdd folder={this.props.id} index={this.props.index} />
                 </ul>
             </div>
         )

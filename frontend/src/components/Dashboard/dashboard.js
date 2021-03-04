@@ -79,7 +79,7 @@ export default class Dashboard extends React.Component {
                 </div>
                 <div className="assignment-display">
                     {this.state.folders.map(folder => 
-                        <Folder name={folder.name} id={folder._id} key={folder._id} />  
+                        <Folder name={folder.name} id={folder._id} key={folder._id} index={this.state.folders.findIndex(elem => elem._id == folder._id)} />  
                     )}
                 </div>
 

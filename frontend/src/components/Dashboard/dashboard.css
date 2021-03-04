@@ -90,6 +90,7 @@
     padding-bottom: 3rem;
     margin-bottom: 2rem;
     border-radius: .5rem;
+    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, .2)
 }
 
 #dashboard .folder h3 {
@@ -104,7 +105,12 @@
     font-size: 1rem;
     border: none;
     background: none;
-    width: calc(100% - 35rem);
+    width: calc(100% - 34rem);
+}
+
+#dashboard .add-assignment:focus ~ .annotations{
+    visibility: visible;
+    transition-duration: .2s;
 }
 
 #dashboard .add-assignment-button {
@@ -122,4 +128,48 @@
     background-color: rgb(0, 0, 0, 0.5);
     width: 100%;
     display: none;
+}
+
+#dashboard .annotations {
+    margin-right: 1rem;
+    visibility: hidden;
+}
+
+#dashboard .add-notes {
+    float: right;
+    margin-left: .25rem;
+    width: 24px;
+    height: 24px;
+    background: url("../../images/notes-ccc.svg");
+}
+
+#dashboard .add-notes:hover {
+    background: url("../../images/notes-443ab0.svg");
+    transition-duration: .2s;
+}
+
+#dashboard .add-due {
+    float: right;
+    margin-left: .25rem;
+    width: 24px;
+    height: 24px;
+    background: url("../../images/due-ccc.svg");
+}
+
+#dashboard .add-due:hover {
+    background: url("../../images/due-443ab0.svg");
+    transition-duration: .2s;
+}
+
+#dashboard .add-reocurring {
+    float: right;
+    margin-left: .25rem;
+    width: 24px;
+    height: 24px;
+    background: url("../../images/reoccuring-ccc.svg");
+}
+
+#dashboard .add-reocurring:hover {
+    background: url("../../images/reoccuring-443ab0.svg");
+    transition-duration: .2s;
 }
