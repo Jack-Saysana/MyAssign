@@ -165,24 +165,59 @@
     transition-duration: .2s;
 }
 
-#dashboard .add-reocurring {
-    float: right;
-    margin-left: .25rem;
-    width: 24px;
-    height: 24px;
-    background: url("../../images/reoccuring-ccc.svg");
-}
-
-#dashboard .add-reocurring:hover {
-    background: url("../../images/reoccuring-443ab0.svg");
-    transition-duration: .2s;
-}
-
 #dashboard .annotations-field {
     display: none;
     margin-left: -3.5rem;
     width: calc(100% + 4.5rem);
-    background-color: white;
+    border-top: 2px solid #ccc;
     border-bottom-right-radius: .5rem;
     border-bottom-left-radius: .5rem;
 }
+
+#dashboard .close {
+    position: absolute;
+    background: url("../../images/close-ccc.svg");
+    margin-top: .5rem;
+    right: 4rem;
+    width: 24px;
+    height: 24px;
+}
+
+#dashboard .close:hover {
+    background: url("../../images/close-443ab0.svg");
+    transition-duration: .2s;
+}
+
+#dashboard .notes-input {
+    font-family: inherit;
+    font-size: 1rem;
+    resize: none;
+    border: 2px solid #ccc;
+    border-radius: .25rem;
+    width: 90%;
+    height: 10rem;
+    margin-left: calc(5% - 4px);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+#dashboard .notes-input:focus {
+    outline: none;
+}
+
+#dashboard .close {
+    position: absolute;
+}
+
+#dashboard .calendar {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    height: 20rem;
+}
+
+#dashboard .day {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
