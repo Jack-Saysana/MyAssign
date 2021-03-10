@@ -55,17 +55,15 @@ export default class DatePicker extends React.Component {
     
     render(){
         return(
-            <div>
-                <div className="date-picker">
-                    <button name="back" onClick={this.changeMonth}>Back</button>
-                    <h1>{this.convertMonth(this.state.month)}</h1>
-                    <h2>{this.state.year}</h2>
-                    <button name="forward" onClick={this.changeMonth}>Forward</button>
-                    <div className="calendar">
-                        {this.monthData(this.state.year, this.state.month).map(day => 
-                            <div className="day">{day.day}</div>    
-                        )}
-                    </div>
+            <div className="date-picker">
+                <button name="back" onClick={this.changeMonth}>Back</button>
+                <h1>{this.convertMonth(this.state.month)}</h1>
+                <h2>{this.state.year}</h2>
+                <button name="forward" onClick={this.changeMonth}>Forward</button>
+                <div className="calendar">
+                    {this.monthData(this.state.year, this.state.month).map(day => 
+                        <div className="day">{day.day}</div>    
+                    )}
                 </div>
             </div>
         )

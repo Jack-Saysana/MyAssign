@@ -65,13 +65,21 @@ export default class Folder extends React.Component {
     }
 
     toggleAnnoField(event){
-        event.preventDefault();
-        document.getElementsByClassName("annotations-field")[this.props.index].style.display = document.getElementsByClassName("annotations-field")[this.props.index].style.display === "block" ? "" : "block";
-        document.getElementsByClassName("annotations-field")[this.props.index].style.marginTop = document.getElementsByClassName("annotations-field")[this.props.index].style.marginTop === "3rem" ? "" : "3rem";
-        document.getElementsByClassName("folder")[this.props.index].style.paddingBottom = document.getElementsByClassName("folder")[this.props.index].style.paddingBottom === "0rem" ? "" : "0rem";
-        document.getElementsByClassName("annotations")[this.props.index].style.visibility = document.getElementsByClassName("annotations")[this.props.index].style.visibility === "visible" ? "" : "visible";
-        document.getElementsByClassName("add-assignment")[this.props.index].style.borderBottom = document.getElementsByClassName("annotations")[this.props.index].style.visibility === "visible" ? "2px solid #443ab0" : "";
-        document.getElementsByClassName("add-assignment")[this.props.index].focus();
+        const annoField = document.getElementsByClassName("annotations-field")[this.props.index];
+        const folder = document.getElementsByClassName("folder")[this.props.index];
+        const annotations = document.getElementsByClassName("annotations")[this.props.index];
+        const addAssignment = document.getElementsByClassName("add-assignment")[this.props.index];
+        const notesInput = document.getElementsByClassName("notes-input")[this.props.index];
+        const dateInput = document.getElementsByClassName("date-picker")[this.props.index];
+        const activeAndClick = (event.target.className === "add-notes" && notesInput.style.display === "block") || (event.target.className === "add-due" && dateInput.style.display === "block");
+        notesInput.style.display = event.target.className === "add-notes" && notesInput.style.display === "" ? "block" : "";
+        dateInput.style.display = event.target.className === "add-due" && dateInput.style.display === "" ? "block" : "";
+        annoField.style.display = event.target.className === "close" || activeAndClick ? "" : "block";
+        annoField.style.marginTop = event.target.className === "close" || activeAndClick ? "" : "3rem";
+        folder.style.paddingBottom = event.target.className === "close" || activeAndClick ? "" : "0rem";
+        annotations.style.visibility = event.target.className === "close" || activeAndClick ? "" : "visible";
+        addAssignment.style.borderBottom = event.target.className === "close" || activeAndClick ? "" : "2px solid #443ab0";
+        addAssignment.focus();
     }
 
     render(){
