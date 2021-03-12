@@ -213,17 +213,105 @@
 
 #dashboard .date-picker {
     display: none;
+    width: calc(20rem - 1px);
+    margin-top: calc(1rem - 1px);
+    margin-left: calc(50% - 10rem - 14px);
+    border: 1px solid #ccc;
+    border-radius: .25rem;
+    overflow: hidden;
+}
+
+#dashboard .month-display {
+    width: 100%;
+    background-color: #574ae2;
+}
+
+#dashboard .date {
+    color: #faf9f9;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+#dashboard .month-changer {
+    display: flex;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    background-color: #faf9f9;
+}
+
+#dashboard .month {
+    text-align: center;
+    margin-top: 1px;
+    margin-left: 1rem;
+}
+
+#dashboard .shifter-buttons {
+    position: absolute;
+    margin-left: 15rem;
+}
+
+#dashboard .back {
+    background: url("../../images/left-ccc.svg");
+    margin-right: .5rem;
+    float: left;
+    width: 24px;
+    height: 24px;
+}
+
+#dashboard .back:hover {
+    background: url("../../images/left-443ab0.svg");
+}
+
+#dashboard .forward {
+    background: url("../../images/right-ccc.svg");
+    margin-left: .5rem;
+    float: right;
+    width: 24px;
+    height: 24px;
+}
+
+#dashboard .forward:hover {
+    background: url("../../images/right-443ab0.svg");
 }
 
 #dashboard .calendar {
     display: flex;
     flex-wrap: wrap;
-    width: 50%;
-    height: 20rem;
+    width: calc(20rem - 1px);
 }
 
 #dashboard .day {
-    width: calc(100% / 7);
-    height: calc(100% / 7);
+    width: calc((100% / 7));
+    height: 2rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    background-color: #faf9f9;
+}
+
+#dashboard .day:hover > .selector{
+    background-color:#574ae2;
+    transition-duration: .2s;
+    z-index: 99;
+}
+
+#dashboard .day:hover > .day-label{
+    color: #faf9f9;
+    font-weight: bold;
+    z-index: 1;
+}
+
+#dashboard .selector {
+    position: absolute;
+    margin-left: .5rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+}
+
+#dashboard .day-label {
+    position: relative;
+    text-align: center;
+    padding-top: 3px;
 }
 

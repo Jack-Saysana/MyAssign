@@ -30,7 +30,7 @@ export default class DatePicker extends React.Component {
 
     changeMonth(event) {
         event.preventDefault();
-        const month = event.target.name === "back" ? this.state.month -= 1 : this.state.month += 1;
+        const month = event.target.className === "back" ? this.state.month -= 1 : this.state.month += 1;
         this.setState({
             month: month > 11 ? 0 : month < 0 ? 11 : month,
             year: month > 11 ? this.state.year += 1 : month < 0 ? this.state.year -= 1 : this.state.year
@@ -56,13 +56,26 @@ export default class DatePicker extends React.Component {
     render(){
         return(
             <div className="date-picker">
-                <button name="back" onClick={this.changeMonth}>Back</button>
-                <h1>{this.convertMonth(this.state.month)}</h1>
-                <h2>{this.state.year}</h2>
-                <button name="forward" onClick={this.changeMonth}>Forward</button>
+                <div className="month-display">
+                    <div className="date">
+                        {this.convertMonth(this.state.month)} {this.state.day}, {this.state.year}
+                    </div>
+                </div>
+                <div className="month-changer">
+                    <div className="month">{this.convertMonth(this.state.month)} {this.state.year}</div>
+                    <div className="shifter-buttons">
+                        <div className="back" onClick={this.changeMonth} />
+                        <div className="forward" onClick={this.changeMonth} />
+                    </div>
+                </div>
                 <div className="calendar">
                     {this.monthData(this.state.year, this.state.month).map(day => 
-                        <div className="day">{day.day}</div>    
+                        <div className="day">
+                            <div className="selector" />
+                            <div className="day-label">
+                                {day.day}
+                            </div>
+                        </div>    
                     )}
                 </div>
             </div>
