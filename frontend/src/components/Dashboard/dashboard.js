@@ -1,11 +1,12 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
-import './dashboard';
+import update from 'react-addons-update';
 import Folder from './Folder';
 import FolderAdd from './FolderAdd';
 import AssignmentModal from './AssignmentModal';
 import '../App/global.css';
+import './dashboard.css';
 
 //Jack Saysana
 
@@ -14,12 +15,14 @@ export default class Dashboard extends React.Component {
         super(props);
         this.state = {
             folders: [],
+            dayCounts: [],
             AssignmentModalVisible: false,
             redirect: '/user'
         }
         this.newAssingment = this.newAssingment.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.refreshFolders = this.refreshFolders.bind(this);
+        this.updateDayCounts = this.updateDayCounts.bind(this);
     }
 
     async componentDidMount(){
@@ -27,6 +30,7 @@ export default class Dashboard extends React.Component {
             await axios.get(`http://localhost:5000/folders/${sessionStorage.getItem('user')}`).then(res => {
                 this.setState({
                     folders: res.data.folders,
+                    dayCounts: Array(res.data.folders.length),
                     redirect: '/user'
                 });
             });
@@ -62,6 +66,17 @@ export default class Dashboard extends React.Component {
         document.getElementsByClassName("blur")[0].style.transitionDuration = ".2s";
     }
 
+    updateDayCounts(index, count){
+        this.setState(update(this.state, {
+            dayCounts: {
+                [index]: {
+                    $set: count
+                }
+            }
+        }));
+        console.log(this.state.dayCounts);
+    }
+
     render() {
         return(
             <div id="dashboard">
@@ -79,7 +94,7 @@ export default class Dashboard extends React.Component {
                 </div>
                 <div className="assignment-display">
                     {this.state.folders.map(folder => 
-                        <Folder name={folder.name} id={folder._id} key={folder._id} index={this.state.folders.findIndex(elem => elem._id === folder._id)} />  
+                        <Folder name={folder.name} id={folder._id} index={this.state.folders.findIndex(elem => elem._id === folder._id)} updateDayCounts={this.updateDayCounts} key={folder._id} />
                     )}
                 </div>
 

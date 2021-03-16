@@ -11,13 +11,15 @@ export default class Folder extends React.Component {
             assignments: [],
             title: "",
             notes: "",
-            due: null
+            due: null,
+            dayCount: 0
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.changeDate = this.changeDate.bind(this);
         this.enterListen = this.enterListen.bind(this);
         this.toggleAnnoField = this.toggleAnnoField.bind(this);
+        this.passDayCount = this.passDayCount.bind(this);
     }
 
     async componentDidMount(){
@@ -72,14 +74,14 @@ export default class Folder extends React.Component {
         const notesInput = document.getElementsByClassName("notes-input")[this.props.index];
         const dateInput = document.getElementsByClassName("date-picker")[this.props.index];
         const activeAndClick = (event.target.className === "add-notes" && notesInput.style.display === "block") || (event.target.className === "add-due" && dateInput.style.display === "block");
-        notesInput.style.display = event.target.className === "add-notes" && notesInput.style.display === "" ? "block" : "";
-        dateInput.style.display = event.target.className === "add-due" && dateInput.style.display === "" ? "block" : "";
-        annoField.style.display = event.target.className === "close" || activeAndClick ? "" : "block";
-        annoField.style.marginTop = event.target.className === "close" || activeAndClick ? "" : "3rem";
         folder.style.paddingBottom = event.target.className === "close" || activeAndClick ? "" : "0rem";
         annotations.style.visibility = event.target.className === "close" || activeAndClick ? "" : "visible";
         addAssignment.style.borderBottom = event.target.className === "close" || activeAndClick ? "" : "2px solid #443ab0";
         addAssignment.focus();
+    }
+
+    passDayCount(){
+        this.props.updateDayCounts(this.props.index, this.state.dayCount);
     }
 
     render(){
@@ -105,7 +107,7 @@ export default class Folder extends React.Component {
                     <div className="annotations-field">
                         <div className="close" onClick={this.toggleAnnoField} />
                         <textarea className="notes-input" name="notes" placeholder="Notes..." onChange={this.handleChange} />
-                        <DatePicker changeDate={this.changeDate} />
+                        <DatePicker folderIndex={this.props.index} changeDate={this.changeDate} key={this.props.index} />
                     </div>
                 </ul>
             </div>

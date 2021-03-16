@@ -1,4 +1,5 @@
 import React from 'react';
+import Day from './Day';
 
 export default class DatePicker extends React.Component {
     constructor(props){
@@ -6,12 +7,15 @@ export default class DatePicker extends React.Component {
         this.state = {
             day: "",
             month: "",
-            year: ""
+            displayedMonth: "",
+            year: "",
+            displayedYear: ""
         }
 
         this.convertMonth = this.convertMonth.bind(this);
-        this.changeMonth = this.changeMonth.bind(this);
+        this.changeDisplayedMonth = this.changeDisplayedMonth.bind(this);
         this.monthData = this.monthData.bind(this);
+        this.setDay = this.setDay.bind(this);
     }
 
     componentDidMount(){
@@ -19,7 +23,9 @@ export default class DatePicker extends React.Component {
         this.setState({
             day: date.getDate(),
             month: date.getMonth(),
-            year: date.getFullYear()
+            displayedMonth: date.getMonth(),
+            year: date.getFullYear(),
+            displayedYear: date.getFullYear()
         })
     }
 
@@ -28,12 +34,12 @@ export default class DatePicker extends React.Component {
         return months[month];
     }
 
-    changeMonth(event) {
+    changeDisplayedMonth(event) {
         event.preventDefault();
-        const month = event.target.className === "back" ? this.state.month -= 1 : this.state.month += 1;
+        const month = event.target.className === "back" ? this.state.displayedMonth - 1 : this.state.displayedMonth + 1;
         this.setState({
-            month: month > 11 ? 0 : month < 0 ? 11 : month,
-            year: month > 11 ? this.state.year += 1 : month < 0 ? this.state.year -= 1 : this.state.year
+            displayedMonth: month > 11 ? 0 : month < 0 ? 11 : month,
+            displayedYear: month > 11 ? this.state.displayedYear + 1 : month < 0 ? this.state.displayedYear - 1 : this.state.displayedYear
         });
     }
 
@@ -47,10 +53,19 @@ export default class DatePicker extends React.Component {
             monthData.push({
                 day: day.getDate(),
                 month: day.getMonth(),
-                year: day.getFullYear()
+                year: day.getFullYear(),
+                active: day.getDate() === this.state.day && day.getMonth() === this.state.month && day.getFullYear() === this.state.year
             });
         }
         return monthData;
+    }
+
+    setDay(day, month, year){
+        this.setState({
+            day: day,
+            month: month,
+            year: year
+        });
     }
     
     render(){
@@ -62,20 +77,15 @@ export default class DatePicker extends React.Component {
                     </div>
                 </div>
                 <div className="month-changer">
-                    <div className="month">{this.convertMonth(this.state.month)} {this.state.year}</div>
+                    <div className="month">{this.convertMonth(this.state.displayedMonth)} {this.state.displayedYear}</div>
                     <div className="shifter-buttons">
-                        <div className="back" onClick={this.changeMonth} />
-                        <div className="forward" onClick={this.changeMonth} />
+                        <div className="back" onClick={this.changeDisplayedMonth} />
+                        <div className="forward" onClick={this.changeDisplayedMonth} />
                     </div>
                 </div>
                 <div className="calendar">
-                    {this.monthData(this.state.year, this.state.month).map(day => 
-                        <div className="day">
-                            <div className="selector" />
-                            <div className="day-label">
-                                {day.day}
-                            </div>
-                        </div>    
+                    {this.monthData(this.state.displayedYear, this.state.displayedMonth).map((day, index) => 
+                        <Day dayData={day} setDay={this.setDay} id={`${this.props.folderIndex}_${index}`} key={`${this.props.folderIndex}_${index}`} />
                     )}
                 </div>
             </div>

@@ -292,13 +292,13 @@
 #dashboard .day:hover > .selector{
     background-color:#574ae2;
     transition-duration: .2s;
-    z-index: 99;
+    z-index: 1;
 }
 
 #dashboard .day:hover > .day-label{
     color: #faf9f9;
     font-weight: bold;
-    z-index: 1;
+    z-index: 99;
 }
 
 #dashboard .selector {
@@ -311,6 +311,8 @@
 
 #dashboard .day-label {
     position: relative;
+    margin-top: 2px;
+    margin-left: 3px;
     text-align: center;
     padding-top: 3px;
 }
