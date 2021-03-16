@@ -102,6 +102,10 @@
     padding-bottom: 0;
 }
 
+#dashboard .name-field {
+    margin-left: 2rem;
+}
+
 #dashboard .add-assignment {
     position: absolute;
     margin-left: 25px;
@@ -109,11 +113,11 @@
     font-size: 1rem;
     border: none;
     background: none;
-    width: calc(100% - 32rem);
+    width: calc(100% - 29rem);
 }
 
-#dashboard .add-assignment:focus ~ .annotations{
-    visibility: visible;
+#dashboard .add-assignment:focus ~ .add-annotations{
+    display: block;
     transition-duration: .2s;
 }
 
@@ -124,52 +128,27 @@
     background: url("../../images/plus-ccc.svg");
 }
 
-#dashboard .blur {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    height: 100%;
-    background-color: rgb(0, 0, 0, 0.5);
-    width: 100%;
+#dashboard .add-annotations {
     display: none;
-}
-
-#dashboard .annotations {
-    margin-right: 1rem;
-    visibility: hidden;
-}
-
-#dashboard .add-notes {
     float: right;
-    margin-left: .25rem;
+    margin-top: 3px;
+    margin-right: 5px;
     width: 24px;
     height: 24px;
     background: url("../../images/notes-ccc.svg");
 }
 
-#dashboard .add-notes:hover {
+#dashboard .add-annotations:hover {
     background: url("../../images/notes-443ab0.svg");
     transition-duration: .2s;
 }
 
-#dashboard .add-due {
-    float: right;
-    margin-left: .25rem;
-    width: 24px;
-    height: 24px;
-    background: url("../../images/due-ccc.svg");
-}
-
-#dashboard .add-due:hover {
-    background: url("../../images/due-443ab0.svg");
-    transition-duration: .2s;
-}
-
 #dashboard .annotations-field {
-    display: none;
-    margin-left: -3.5rem;
+    display: flex;
     padding-bottom: 1rem;
-    width: calc(100% + 4.5rem);
+    width: calc(100% + 2rem);
+    margin-top: 4rem;
+    margin-left: -1rem;
     border-top: 2px solid #ccc;
     border-bottom-right-radius: .5rem;
     border-bottom-left-radius: .5rem;
@@ -190,16 +169,15 @@
 }
 
 #dashboard .notes-input {
-    display: none;
     font-family: inherit;
     font-size: 1rem;
     resize: none;
     border: 2px solid #ccc;
     border-radius: .25rem;
-    width: 90%;
-    height: 10rem;
-    margin-left: calc(5% - 4px);
-    margin-top: 2rem;
+    width: calc(90% - 22rem - 10px);
+    height: 15rem;
+    margin-left: 5%;
+    margin-top: 2.5rem;
     margin-bottom: 1rem;
 }
 
@@ -211,12 +189,14 @@
     position: absolute;
 }
 
+#dashboard .date-input {
+    margin-left: 2rem;
+    margin-top: 2.5rem;
+}
+
 #dashboard .date-picker {
-    display: none;
     width: calc(20rem - 1px);
-    margin-top: calc(1rem - 1px);
-    margin-left: calc(50% - 10rem - 14px);
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: .25rem;
     overflow: hidden;
 }

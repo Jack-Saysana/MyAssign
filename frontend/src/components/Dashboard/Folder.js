@@ -69,14 +69,10 @@ export default class Folder extends React.Component {
     toggleAnnoField(event){
         const annoField = document.getElementsByClassName("annotations-field")[this.props.index];
         const folder = document.getElementsByClassName("folder")[this.props.index];
-        const annotations = document.getElementsByClassName("annotations")[this.props.index];
         const addAssignment = document.getElementsByClassName("add-assignment")[this.props.index];
-        const notesInput = document.getElementsByClassName("notes-input")[this.props.index];
-        const dateInput = document.getElementsByClassName("date-picker")[this.props.index];
-        const activeAndClick = (event.target.className === "add-notes" && notesInput.style.display === "block") || (event.target.className === "add-due" && dateInput.style.display === "block");
-        folder.style.paddingBottom = event.target.className === "close" || activeAndClick ? "" : "0rem";
-        annotations.style.visibility = event.target.className === "close" || activeAndClick ? "" : "visible";
-        addAssignment.style.borderBottom = event.target.className === "close" || activeAndClick ? "" : "2px solid #443ab0";
+        annoField.style.display = annoField.style.display === "block" ? "" : "block";
+        annoField.style.marginTop = annoField.style.display === "block" ? "" : "3rem";
+        folder.style.paddingBottom = annoField.style.display === "block" ? "" : "0";
         addAssignment.focus();
     }
 
@@ -96,20 +92,17 @@ export default class Folder extends React.Component {
                     <p>test</p>
                     <p>test</p>
                     <p>test</p>
-                    <div>
-                        <input className="add-assignment add-elem" type="text" name="title" placeholder="New Assignment" autoComplete="off" onBlur={this.toggleAnnotations} onKeyDown={this.enterListen} onChange={this.handleChange} ></input>
-                        <div className="add-assignment-button add-elem-button" onClick={this.handleSubmit} />
-                        <div className="annotations">
-                            <div className="add-due" onClick={this.toggleAnnoField} />
-                            <div className="add-notes" onClick={this.toggleAnnoField} />
-                        </div>
-                    </div>
-                    <div className="annotations-field">
-                        <div className="close" onClick={this.toggleAnnoField} />
-                        <textarea className="notes-input" name="notes" placeholder="Notes..." onChange={this.handleChange} />
-                        <DatePicker folderIndex={this.props.index} changeDate={this.changeDate} key={this.props.index} />
-                    </div>
                 </ul>
+                <div className="name-field">
+                    <input className="add-assignment add-elem" type="text" name="title" placeholder="New Assignment" autoComplete="off" onBlur={this.toggleAnnotations} onKeyDown={this.enterListen} onChange={this.handleChange} ></input>
+                    <div className="add-assignment-button add-elem-button" onClick={this.handleSubmit} />
+                    <div className="add-annotations" onClick={this.toggleAnnoField} />
+                </div>
+                <div className="annotations-field">
+                    <div className="close" onClick={this.toggleAnnoField} />
+                    <textarea className="notes-input" name="notes" placeholder="Notes..." onChange={this.handleChange} />
+                    <DatePicker folderIndex={this.props.index} changeDate={this.changeDate} key={this.props.index} />
+                </div>
             </div>
         )
     }

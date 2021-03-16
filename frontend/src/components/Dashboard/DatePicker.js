@@ -70,23 +70,28 @@ export default class DatePicker extends React.Component {
     
     render(){
         return(
-            <div className="date-picker">
-                <div className="month-display">
-                    <div className="date">
-                        {this.convertMonth(this.state.month)} {this.state.day}, {this.state.year}
-                    </div>
+            <div className="date-input">
+                <div className="date-slider">
+                    <input type="checkbox" />    
                 </div>
-                <div className="month-changer">
-                    <div className="month">{this.convertMonth(this.state.displayedMonth)} {this.state.displayedYear}</div>
-                    <div className="shifter-buttons">
-                        <div className="back" onClick={this.changeDisplayedMonth} />
-                        <div className="forward" onClick={this.changeDisplayedMonth} />
+                <div className="date-picker">
+                    <div className="month-display">
+                        <div className="date">
+                            {this.convertMonth(this.state.month)} {this.state.day}, {this.state.year}
+                        </div>
                     </div>
-                </div>
-                <div className="calendar">
-                    {this.monthData(this.state.displayedYear, this.state.displayedMonth).map((day, index) => 
-                        <Day dayData={day} setDay={this.setDay} id={`${this.props.folderIndex}_${index}`} key={`${this.props.folderIndex}_${index}`} />
-                    )}
+                    <div className="month-changer">
+                        <div className="month">{this.convertMonth(this.state.displayedMonth)} {this.state.displayedYear}</div>
+                        <div className="shifter-buttons">
+                            <div className="back" onClick={this.changeDisplayedMonth} />
+                            <div className="forward" onClick={this.changeDisplayedMonth} />
+                        </div>
+                    </div>
+                    <div className="calendar">
+                        {this.monthData(this.state.displayedYear, this.state.displayedMonth).map((day, index) =>
+                            <Day dayData={day} setDay={this.setDay} id={`${this.props.folderIndex}_${index}`} key={`${this.props.folderIndex}_${index}`} />
+                        )}
+                    </div>
                 </div>
             </div>
         )
