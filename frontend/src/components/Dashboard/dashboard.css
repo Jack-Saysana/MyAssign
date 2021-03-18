@@ -194,7 +194,26 @@
     margin-top: 2.5rem;
 }
 
+#dashboard .toggle-datepicker {
+    width: 35px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    transition: .4s;
+}
+
+#dashboard .slider {
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    background-color: #faf9f9;
+    transition: .4s;
+}
+
 #dashboard .date-picker {
+    position: relative;
     width: calc(20rem - 1px);
     border: 2px solid #ccc;
     border-radius: .25rem;
@@ -204,6 +223,7 @@
 #dashboard .month-display {
     width: 100%;
     background-color: #574ae2;
+    transition: .4s;
 }
 
 #dashboard .date {
@@ -211,6 +231,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     padding: 1rem;
+    transition: .4s;
 }
 
 #dashboard .month-changer {
@@ -218,6 +239,7 @@
     padding-top: .5rem;
     padding-bottom: .5rem;
     background-color: #faf9f9;
+    transition: .4s;
 }
 
 #dashboard .month {
@@ -267,12 +289,13 @@
     padding-top: .5rem;
     padding-bottom: .5rem;
     background-color: #faf9f9;
+    transition: .4s;
 }
 
 #dashboard .day:hover > .selector{
     background-color:#574ae2;
     transition-duration: .2s;
-    z-index: 1;
+    z-index: 2;
 }
 
 #dashboard .day:hover > .day-label{
@@ -287,6 +310,7 @@
     width: 2rem;
     height: 2rem;
     border-radius: 1rem;
+    transition: .4s;
 }
 
 #dashboard .day-label {
@@ -295,5 +319,29 @@
     margin-left: 3px;
     text-align: center;
     padding-top: 3px;
+    cursor: pointer;
+    transition: .4s;
 }
 
+#dashboard .disabled .month-display {
+    background-color: rgb(161, 161, 161);
+}
+
+#dashboard .disabled .date {
+    color: #ccc;
+}
+
+#dashboard .disabled .month-changer {
+    background-color: #ccc;
+}
+
+#dashboard .disabled .day {
+    background-color: #ccc;
+}
+
+#dashboard .disabler {
+    position: absolute;
+    width: calc(20rem - 1px);
+    height: 100%;
+    z-index: 1;
+}

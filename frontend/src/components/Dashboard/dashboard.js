@@ -99,7 +99,6 @@ export default class Dashboard extends React.Component {
                 </div>
 
                 <Redirect to={this.state.redirect} />
-                <div className="blur" onClick={this.closeModal}></div>
                 <AssignmentModal visible={this.state.AssignmentModalVisible} closeModal={this.closeModal} folders={this.state.folders} />
             </div>
         )

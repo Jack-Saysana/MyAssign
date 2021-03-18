@@ -70,9 +70,6 @@ export default class Folder extends React.Component {
         const annoField = document.getElementsByClassName("annotations-field")[this.props.index];
         const folder = document.getElementsByClassName("folder")[this.props.index];
         const addAssignment = document.getElementsByClassName("add-assignment")[this.props.index];
-        annoField.style.display = annoField.style.display === "block" ? "" : "block";
-        annoField.style.marginTop = annoField.style.display === "block" ? "" : "3rem";
-        folder.style.paddingBottom = annoField.style.display === "block" ? "" : "0";
         addAssignment.focus();
     }
 

@@ -5,6 +5,7 @@ export default class DatePicker extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            enabled: false,
             day: "",
             month: "",
             displayedMonth: "",
@@ -12,6 +13,7 @@ export default class DatePicker extends React.Component {
             displayedYear: ""
         }
 
+        this.toggleDataPicker = this.toggleDataPicker.bind(this);
         this.convertMonth = this.convertMonth.bind(this);
         this.changeDisplayedMonth = this.changeDisplayedMonth.bind(this);
         this.monthData = this.monthData.bind(this);
@@ -27,6 +29,26 @@ export default class DatePicker extends React.Component {
             year: date.getFullYear(),
             displayedYear: date.getFullYear()
         })
+    }
+
+    toggleDataPicker(event){
+        event.preventDefault();
+        const enabled = this.state.enabled ? false: true;
+        const switcher = document.getElementsByClassName("toggle-datepicker")[this.props.folderIndex].style;
+        const slider = document.getElementsByClassName("slider")[this.props.folderIndex].style;
+        const datepicker = document.getElementsByClassName("date-picker")[this.props.folderIndex];
+        const disabler = document.getElementsByClassName("disabler")[this.props.folderIndex];
+        switcher.backgroundColor = enabled ? "#574ae2" : "";
+        slider.transform = enabled ? "translateX(15px)" : "";
+        disabler.style.display = enabled ? "none" : "";
+        if (enabled === false) {
+            datepicker.classList.add("disabled");
+        } else {
+            datepicker.classList.remove("disabled");
+        }
+        this.setState({
+            enabled: enabled
+        });
     }
 
     convertMonth(month) {
@@ -71,10 +93,11 @@ export default class DatePicker extends React.Component {
     render(){
         return(
             <div className="date-input">
-                <div className="date-slider">
-                    <input type="checkbox" />    
+                <div className="toggle-datepicker" onClick={this.toggleDataPicker}>
+                    <div className="slider" />
                 </div>
-                <div className="date-picker">
+                <div className="date-picker disabled">
+                    <div className="disabler"></div>
                     <div className="month-display">
                         <div className="date">
                             {this.convertMonth(this.state.month)} {this.state.day}, {this.state.year}
@@ -89,7 +112,7 @@ export default class DatePicker extends React.Component {
                     </div>
                     <div className="calendar">
                         {this.monthData(this.state.displayedYear, this.state.displayedMonth).map((day, index) =>
-                            <Day dayData={day} setDay={this.setDay} id={`${this.props.folderIndex}_${index}`} key={`${this.props.folderIndex}_${index}`} />
+                            <Day enabled={this.state.enabled} dayData={day} setDay={this.setDay} id={`${this.props.folderIndex}_${index}`} key={`${this.props.folderIndex}_${index}`} />
                         )}
                     </div>
                 </div>
