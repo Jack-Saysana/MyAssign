@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import DatePicker from './DatePicker';
+import Assignment from './Assignment';
 
 //Jack Saysana
 
@@ -11,7 +12,7 @@ export default class Folder extends React.Component {
             assignments: [],
             title: "",
             notes: "",
-            due: null,
+            due: "",
             dayCount: 0
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -54,10 +55,11 @@ export default class Folder extends React.Component {
         });
     }
 
-    changeDate(date){
+    changeDate(enabled, date){
+        const newDue = enabled ? date : "";
         this.setState({
-            due: date
-        })
+            due: newDue
+        });
     }
 
     enterListen(event) {
@@ -67,10 +69,13 @@ export default class Folder extends React.Component {
     }
 
     toggleAnnoField(event){
-        const annoField = document.getElementsByClassName("annotations-field")[this.props.index];
-        const folder = document.getElementsByClassName("folder")[this.props.index];
-        const addAssignment = document.getElementsByClassName("add-assignment")[this.props.index];
-        addAssignment.focus();
+        event.preventDefault();
+        const annoField = document.getElementsByClassName("annotations-field")[this.props.index].style;
+        document.getElementsByClassName("add-annotations")[this.props.index].style.visibility = annoField.display === "" ? "visible" : "";
+        document.getElementsByClassName("add-assignment")[this.props.index].style.borderBottom = annoField.display === "" ? "2px solid #443ab0" : "";
+        document.getElementsByClassName("folder")[this.props.index].style.paddingBottom = annoField.display === "" ? "0rem" : "";
+        annoField.display = annoField.display === "" ? "flex" : "";
+        document.getElementsByClassName("add-assignment")[this.props.index].focus();
     }
 
     passDayCount(){
@@ -81,15 +86,11 @@ export default class Folder extends React.Component {
         return(
             <div className="folder">
                 <h3>{this.props.name}</h3>
-                <ul>
+                <div className="assignment-list">
                     {this.state.assignments.map(assignment =>
-                        <li key={assignment._id} >{assignment.title}</li>
+                        <Assignment data={assignment} key={assignment._id} />
                     )}
-                    <p>test</p>
-                    <p>test</p>
-                    <p>test</p>
-                    <p>test</p>
-                </ul>
+                </div>
                 <div className="name-field">
                     <input className="add-assignment add-elem" type="text" name="title" placeholder="New Assignment" autoComplete="off" onBlur={this.toggleAnnotations} onKeyDown={this.enterListen} onChange={this.handleChange} ></input>
                     <div className="add-assignment-button add-elem-button" onClick={this.handleSubmit} />

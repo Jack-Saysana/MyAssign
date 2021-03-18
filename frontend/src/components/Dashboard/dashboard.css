@@ -102,8 +102,9 @@
     padding-bottom: 0;
 }
 
-#dashboard .name-field {
-    margin-left: 2rem;
+#dashboard .assignment-list {
+    margin-left: 1.75rem;
+    margin-bottom: .5rem;
 }
 
 #dashboard .add-assignment {
@@ -117,7 +118,7 @@
 }
 
 #dashboard .add-assignment:focus ~ .add-annotations{
-    display: block;
+    visibility: visible;
     transition-duration: .2s;
 }
 
@@ -129,7 +130,7 @@
 }
 
 #dashboard .add-annotations {
-    display: none;
+    visibility: hidden;
     float: right;
     margin-top: 3px;
     margin-right: 5px;
@@ -144,7 +145,7 @@
 }
 
 #dashboard .annotations-field {
-    display: flex;
+    display: none;
     padding-bottom: 1rem;
     width: calc(100% + 2rem);
     margin-top: 4rem;
@@ -194,11 +195,17 @@
     margin-top: 2.5rem;
 }
 
+#dashboard .toggler {
+    display: flex;
+    margin-bottom: .5rem;
+}
+
 #dashboard .toggle-datepicker {
     width: 35px;
     height: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
+    margin-left: 1rem;
     transition: .4s;
 }
 

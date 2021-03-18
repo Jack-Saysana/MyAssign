@@ -46,6 +46,7 @@ export default class DatePicker extends React.Component {
         } else {
             datepicker.classList.remove("disabled");
         }
+        this.props.changeDate(enabled, new Date(this.state.year, this.state.month, this.state.day));
         this.setState({
             enabled: enabled
         });
@@ -88,13 +89,17 @@ export default class DatePicker extends React.Component {
             month: month,
             year: year
         });
+        this.props.changeDate(this.state.enabled, new Date(year, month, day));
     }
     
     render(){
         return(
             <div className="date-input">
-                <div className="toggle-datepicker" onClick={this.toggleDataPicker}>
-                    <div className="slider" />
+                <div className="toggler">
+                    <div className="toggle-label">Due Date:</div>
+                    <div className="toggle-datepicker" onClick={this.toggleDataPicker}>
+                        <div className="slider" />
+                    </div>
                 </div>
                 <div className="date-picker disabled">
                     <div className="disabler"></div>

@@ -84,7 +84,7 @@ export default class Dashboard extends React.Component {
                 <div className="side-bar">
                     <h3 className="side-title">Folders</h3>
                     {this.state.folders.map(folder =>
-                        <div className="folder-select">
+                        <div className="folder-select" key={folder._id}>
                             <p>
                                 {folder.name}
                             </p>
