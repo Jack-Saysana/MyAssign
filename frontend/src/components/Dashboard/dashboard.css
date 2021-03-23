@@ -107,6 +107,10 @@
     margin-bottom: .5rem;
 }
 
+#dashboard .name-field {
+    margin-top: 1rem;
+}
+
 #dashboard .add-assignment {
     position: absolute;
     margin-left: 25px;
@@ -114,7 +118,7 @@
     font-size: 1rem;
     border: none;
     background: none;
-    width: calc(100% - 29rem);
+    width: calc(100% - 27rem);
 }
 
 #dashboard .add-assignment:focus ~ .add-annotations{
@@ -351,4 +355,20 @@
     width: calc(20rem - 1px);
     height: 100%;
     z-index: 1;
+}
+
+#dashboard .title {
+    display: block;
+    margin-top: 1rem;
+    background: none;
+    border: none;
+    font-size: 1rem;
+}
+
+#dashboard .title:focus {
+    outline: none;
+}
+
+#dashboard .title:hover {
+    border-bottom: 2px solid #ccc;
 }

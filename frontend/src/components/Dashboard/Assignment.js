@@ -6,10 +6,13 @@ export default class Assignment extends React.Component {
         super(props);
         this.state = {
             title: "",
+            initialTitle: "",
             due: "",
             notes: "",
             completed: false
         }
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount(){
@@ -20,9 +23,15 @@ export default class Assignment extends React.Component {
         })
     }
 
+    handleChange(event){
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
     render(){
         return(
-            <input className="title" type="text" />
+            <input className="title" type="text" value={this.state.title} onChange={this.handleChange} />
         )
     }
 }
