@@ -12,7 +12,7 @@ export default class Folder extends React.Component {
             assignments: [],
             title: "",
             notes: "",
-            due: "",
+            due: undefined,
             dayCount: 0
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -56,7 +56,7 @@ export default class Folder extends React.Component {
     }
 
     changeDate(enabled, date){
-        const newDue = enabled ? date : "";
+        const newDue = enabled ? date : undefined;
         this.setState({
             due: newDue
         });
@@ -88,7 +88,7 @@ export default class Folder extends React.Component {
                 <h3>{this.props.name}</h3>
                 <div className="assignment-list">
                     {this.state.assignments.map(assignment =>
-                        <Assignment data={assignment} key={assignment._id} />
+                        <Assignment id={assignment._id} folder={this.props.id} folderIndex={this.props.index} data={assignment} key={assignment._id} />
                     )}
                 </div>
                 <div className="name-field">
@@ -99,7 +99,7 @@ export default class Folder extends React.Component {
                 <div className="annotations-field">
                     <div className="close" onClick={this.toggleAnnoField} />
                     <textarea className="notes-input" name="notes" placeholder="Notes..." onChange={this.handleChange} />
-                    <DatePicker folderIndex={this.props.index} changeDate={this.changeDate} key={this.props.index} />
+                    <DatePicker changeDate={this.changeDate} id={this.props.id} key={this.props.id} />
                 </div>
             </div>
         )

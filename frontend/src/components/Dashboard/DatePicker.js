@@ -21,23 +21,39 @@ export default class DatePicker extends React.Component {
     }
 
     componentDidMount(){
-        const date = new Date()
+        const date = this.props.currentDate != null || this.props.currentDate != undefined ? new Date(this.props.currentDate) : new Date();
         this.setState({
+            enabled: this.props.currentDate ? true : false,
             day: date.getDate(),
             month: date.getMonth(),
             displayedMonth: date.getMonth(),
             year: date.getFullYear(),
             displayedYear: date.getFullYear()
         })
+        const index = Array.from(document.getElementsByClassName('date-input')).indexOf(document.getElementById(this.props.id));
+        const enabled = this.props.currentDate ? true : false; 
+        const switcher = document.getElementsByClassName("toggle-datepicker")[index].style;
+        const slider = document.getElementsByClassName("slider")[index].style;
+        const datepicker = document.getElementsByClassName("date-picker")[index];
+        const disabler = document.getElementsByClassName("disabler")[index];
+        switcher.backgroundColor = enabled ? "#574ae2" : "";
+        slider.transform = enabled ? "translateX(15px)" : "";
+        disabler.style.display = enabled ? "none" : "";
+        if (!this.props.currentDate) {
+            datepicker.classList.add("disabled");
+        } else {
+            datepicker.classList.remove("disabled");
+        }
     }
 
     toggleDataPicker(event){
         event.preventDefault();
+        const index = Array.from(document.getElementsByClassName('date-input')).indexOf(document.getElementById(this.props.id));
         const enabled = this.state.enabled ? false: true;
-        const switcher = document.getElementsByClassName("toggle-datepicker")[this.props.folderIndex].style;
-        const slider = document.getElementsByClassName("slider")[this.props.folderIndex].style;
-        const datepicker = document.getElementsByClassName("date-picker")[this.props.folderIndex];
-        const disabler = document.getElementsByClassName("disabler")[this.props.folderIndex];
+        const switcher = document.getElementsByClassName("toggle-datepicker")[index].style;
+        const slider = document.getElementsByClassName("slider")[index].style;
+        const datepicker = document.getElementsByClassName("date-picker")[index];
+        const disabler = document.getElementsByClassName("disabler")[index];
         switcher.backgroundColor = enabled ? "#574ae2" : "";
         slider.transform = enabled ? "translateX(15px)" : "";
         disabler.style.display = enabled ? "none" : "";
@@ -94,7 +110,7 @@ export default class DatePicker extends React.Component {
     
     render(){
         return(
-            <div className="date-input">
+            <div className="date-input" id={this.props.id}>
                 <div className="toggler">
                     <div className="toggle-label">Due Date:</div>
                     <div className="toggle-datepicker" onClick={this.toggleDataPicker}>
@@ -117,7 +133,7 @@ export default class DatePicker extends React.Component {
                     </div>
                     <div className="calendar">
                         {this.monthData(this.state.displayedYear, this.state.displayedMonth).map((day, index) =>
-                            <Day enabled={this.state.enabled} dayData={day} setDay={this.setDay} id={`${this.props.folderIndex}_${index}`} key={`${this.props.folderIndex}_${index}`} />
+                            <Day enabled={this.state.enabled} dayData={day} setDay={this.setDay} id={`${this.props.id}_${index}`} key={`${this.props.id}_${index}`} />
                         )}
                     </div>
                 </div>

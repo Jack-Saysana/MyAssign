@@ -177,7 +177,9 @@ router.post('/assignment', async (req, res) => {
 router.post('/updateAssignment', (req, res) => {
     User.findOne({ _id: req.body._id }, async (err, user) => {
         if(err) res.status(400).send({ error: err });
-        user.folders.id(req.body.folder).assignments.id(req.body.assignment) = {
+        const assignment = user.folders.id(req.body.folder).assignments.id(req.body.assignment);
+        console.log(user.folders.id(req.body.folder).assignments.id(req.body.assignment));
+        /*user.folders.id(req.body.folder).assignments.id(req.body.assignment) = {
             title: req.body.title,
             annotations: {
                 notes: (req.body.notes ? req.body.notes : ""),
@@ -185,7 +187,12 @@ router.post('/updateAssignment', (req, res) => {
                 reoccuring: req.body.reoccuring
             },
             completed: req.body.completed
-        };
+        };*/
+        assignment.title = req.body.title ? req.body.title : assignment.title;
+        assignment.annotations.notes = req.body.notes ? req.body.notes : assignment.annotations.notes;
+        assignment.annotations.due = req.body.due ? req.body.due : assignment.annotations.due;
+        assignment.annotations.reocurring = req.body.reocurring ? req.body.reocurring : assignment.annotations.reocurring;
+        assignment.completed = req.body.completed;
         try {
             await user.save(err => {
                 if(err) res.status(500).send({error: err});
@@ -313,9 +320,7 @@ router.post('/folder', async (req, res) => {
 router.post('/updateFolder', (req, res) => {
     User.findOne({ _id: req.body._id }, async (err, user) => {
         if(err) res.status(400).send({ error: err });
-        user.folders.id(req.body.folder) = {
-            name: req.body.name
-        }
+        user.folders.id(req.body.folder).name = req.body.name;
         try {
             await user.save(err => {
                 if (err) res.status(500).send({ error: err });

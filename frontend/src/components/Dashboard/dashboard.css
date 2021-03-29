@@ -35,6 +35,7 @@
 }
 
 #dashboard .add-elem-button:hover{
+    cursor: pointer;
     background: url("../../images/plus-443ab0.svg");
     transition-duration: .2s;
 }
@@ -103,13 +104,11 @@
 }
 
 #dashboard .assignment-list {
-    margin-left: 1.75rem;
+    margin-left: 3px;
     margin-bottom: .5rem;
 }
 
-#dashboard .name-field {
-    margin-top: 1rem;
-}
+
 
 #dashboard .add-assignment {
     position: absolute;
@@ -145,6 +144,7 @@
 
 #dashboard .add-annotations:hover {
     background: url("../../images/notes-443ab0.svg");
+    cursor: pointer;
     transition-duration: .2s;
 }
 
@@ -170,6 +170,7 @@
 
 #dashboard .close:hover {
     background: url("../../images/close-443ab0.svg");
+    cursor: pointer;
     transition-duration: .2s;
 }
 
@@ -211,6 +212,7 @@
     border-radius: 10px;
     margin-left: 1rem;
     transition: .4s;
+    cursor: pointer;
 }
 
 #dashboard .slider {
@@ -274,6 +276,7 @@
 
 #dashboard .back:hover {
     background: url("../../images/left-443ab0.svg");
+    cursor: pointer;
 }
 
 #dashboard .forward {
@@ -286,6 +289,7 @@
 
 #dashboard .forward:hover {
     background: url("../../images/right-443ab0.svg");
+    cursor: pointer;
 }
 
 #dashboard .calendar {
@@ -357,18 +361,53 @@
     z-index: 1;
 }
 
-#dashboard .title {
+#dashboard .title-update{
+    position: relative;
     display: block;
-    margin-top: 1rem;
-    background: none;
-    border: none;
-    font-size: 1rem;
+    max-width: 25%;
 }
 
-#dashboard .title:focus {
+#dashboard .completed {
+    float: left;
+    width: .9rem;
+    height: .9rem;
+    margin-top: 3px;
+    border: 2px solid #6254ff;
+    border-radius: 1rem;
+    transition: .2s;
+}
+
+#dashboard .completed:hover {
+    background-color: #6254ff;
+    cursor: pointer;
+}
+
+#dashboard .title {
+    background: none;
+    border: none;
     outline: none;
+    padding-left: 2px;
+    padding-right: 4px;
+    margin-left: 4px;
+    font-size: 1rem;
 }
 
 #dashboard .title:hover {
     border-bottom: 2px solid #ccc;
+}
+
+#dashboard .title:focus {
+    border-bottom: 2px solid #443ab0;
+    transition: .2s;
+}
+
+#dashboard .assignment-annotations {
+    float: right;
+    width: 24px;
+    height: 24px;
+    background: url("../../images/down-ccc.svg");
+}
+
+#dashboard .assignment-annotations:hover {
+    background: url("../../images/down-443ab0.svg");
 }
