@@ -29,11 +29,11 @@ export default class Assignment extends React.Component {
     }
 
     async handleTitleChange(event){
-        const value = document.getElementsByClassName("title")[Array.from(document.getElementsByClassName("assignment")).indexOf(document.getElementById(this.props.id))].innerHTML;
+        const value = document.getElementsByClassName("assignment-title")[Array.from(document.getElementsByClassName("assignment")).indexOf(document.getElementById(this.props.id))].innerHTML;
         this.setState({
             title: value
         });
-        if(value != this.state.title){
+        if(value !== this.state.title){
             await axios.post('http://localhost:5000/updateAssignment', {
                 _id: sessionStorage.getItem('user'),
                 folder: this.props.folder,
@@ -69,8 +69,8 @@ export default class Assignment extends React.Component {
     toggleAnnoDisplay(event){
         const annoDisplay = document.getElementsByClassName("annotations-display")[Array.from(document.getElementsByClassName("assignment")).indexOf(document.getElementById(this.props.id))].style;
         const toggleButton = document.getElementsByClassName("assignment-annotations")[Array.from(document.getElementsByClassName("assignment")).indexOf(document.getElementById(this.props.id))].style;
+        toggleButton.transform = annoDisplay.display === "" ? "rotate(90deg)" : "";
         annoDisplay.display = annoDisplay.display === "" ? "flex" : "";
-        toggleButton.transform = annoDisplay.display === "" ? "rotate(-90)" : "rotate(0deg)";
     }
 
     render(){
@@ -78,7 +78,7 @@ export default class Assignment extends React.Component {
             <div className="assignment" id={this.props.id}>
                 <div className="title-update">
                     <div className="completed" onClick={this.toggleCompletion} />
-                    <span className="title" name="title" onBlur={this.handleTitleChange} contentEditable>{this.state.title}</span>
+                    <span className="assignment-title" onBlur={this.handleTitleChange} suppressContentEditableWarning={true} contentEditable>{this.state.title}</span>
                     <div className="assignment-annotations" onClick={this.toggleAnnoDisplay} />
                 </div>
                 <div className="annotations-display">

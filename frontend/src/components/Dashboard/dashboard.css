@@ -1,4 +1,7 @@
 /* Jack Saysana */
+html {
+    scroll-behavior: smooth;
+}
 
 #dashboard .container {
     border: 1px solid;
@@ -24,6 +27,10 @@
 
 #dashboard .side-title {
     padding-left: 1rem;
+}
+
+#dashboard .folder-add{
+    margin-top: .5rem;
 }
 
 #dashboard .add-folder-button{
@@ -76,8 +83,21 @@
 }
 
 #dashboard .folder-select {
-    margin-left: calc(1rem + 2px);
+    text-decoration: none;
     width: 100%;
+}
+
+#dashboard .select-content{
+    color: black;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-left: calc(1rem + 27px);
+}
+
+#dashboard .select-content:hover{
+    background-color: #6254ff;
+    color: #faf9f9;
+    transition: .2s;
 }
 
 #dashboard .assignment-display {
@@ -94,6 +114,15 @@
     box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, .2)
 }
 
+#dashboard .folder-name {
+    border: none;
+    outline: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
 #dashboard .folder h3 {
     margin-top: 0;
     margin-bottom: .5rem;
@@ -107,8 +136,6 @@
     margin-left: 3px;
     margin-bottom: .5rem;
 }
-
-
 
 #dashboard .add-assignment {
     position: absolute;
@@ -370,6 +397,7 @@
     position: relative;
     display: block;
     max-width: 25%;
+    overflow: hidden;
 }
 
 #dashboard .completed {
@@ -387,7 +415,7 @@
     cursor: pointer;
 }
 
-#dashboard .title {
+#dashboard .assignment-title {
     background: none;
     border: none;
     outline: none;
@@ -397,11 +425,11 @@
     font-size: 1rem;
 }
 
-#dashboard .title:hover {
+#dashboard .assignment-title:hover {
     border-bottom: 2px solid #ccc;
 }
 
-#dashboard .title:focus {
+#dashboard .assignment-title:focus {
     border-bottom: 2px solid #443ab0;
     transition: .2s;
 }
@@ -413,6 +441,8 @@
     width: 24px;
     height: 24px;
     background: url("../../images/down-ccc.svg");
+    transform-origin: center;
+    transition-duration: .2s;
 }
 
 #dashboard .assignment-annotations:hover {
@@ -421,7 +451,6 @@
 
 #dashboard .annotations-display {
     display: none;
-    transform-origin: center;
     margin-top: 1rem;
     margin-left: -1.2rem;
     padding-bottom: 2rem;

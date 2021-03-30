@@ -21,7 +21,7 @@ export default class DatePicker extends React.Component {
     }
 
     componentDidMount(){
-        const date = this.props.currentDate != null || this.props.currentDate != undefined ? new Date(this.props.currentDate) : new Date();
+        const date = this.props.currentDate !== null || this.props.currentDate !== undefined ? new Date(this.props.currentDate) : new Date();
         const index = Array.from(document.getElementsByClassName('date-input')).indexOf(document.getElementById(this.props.id));
         const enabled = this.props.currentDate ? true : false;
         const switcher = document.getElementsByClassName("toggle-datepicker")[index].style;

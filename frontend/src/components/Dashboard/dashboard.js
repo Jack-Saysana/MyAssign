@@ -4,7 +4,6 @@ import axios from 'axios';
 import update from 'react-addons-update';
 import Folder from './Folder';
 import FolderAdd from './FolderAdd';
-import AssignmentModal from './AssignmentModal';
 import '../App/global.css';
 import './dashboard.css';
 
@@ -84,22 +83,21 @@ export default class Dashboard extends React.Component {
                 <div className="side-bar">
                     <h3 className="side-title">Folders</h3>
                     {this.state.folders.map(folder =>
-                        <div className="folder-select" key={folder._id}>
-                            <p>
+                        <a className="folder-select" href={`#${folder._id}`} key={folder._id}>
+                            <div className="select-content">
                                 {folder.name}
-                            </p>
-                        </div>
+                            </div>
+                        </a>
                     )}
                     <FolderAdd refreshFolders={this.refreshFolders} />
                 </div>
                 <div className="assignment-display">
                     {this.state.folders.map(folder => 
-                        <Folder name={folder.name} id={folder._id} index={this.state.folders.findIndex(elem => elem._id === folder._id)} updateDayCounts={this.updateDayCounts} key={folder._id} />
+                        <Folder id={folder._id} data={folder} index={this.state.folders.findIndex(elem => elem._id === folder._id)} updateDayCounts={this.updateDayCounts} key={folder._id} />
                     )}
                 </div>
 
                 <Redirect to={this.state.redirect} />
-                <AssignmentModal visible={this.state.AssignmentModalVisible} closeModal={this.closeModal} folders={this.state.folders} />
             </div>
         )
     }
