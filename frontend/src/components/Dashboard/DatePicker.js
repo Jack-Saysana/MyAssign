@@ -22,6 +22,12 @@ export default class DatePicker extends React.Component {
 
     componentDidMount(){
         const date = this.props.currentDate != null || this.props.currentDate != undefined ? new Date(this.props.currentDate) : new Date();
+        const index = Array.from(document.getElementsByClassName('date-input')).indexOf(document.getElementById(this.props.id));
+        const enabled = this.props.currentDate ? true : false;
+        const switcher = document.getElementsByClassName("toggle-datepicker")[index].style;
+        const slider = document.getElementsByClassName("slider")[index].style;
+        const datepicker = document.getElementsByClassName("date-picker")[index];
+        const disabler = document.getElementsByClassName("disabler")[index];
         this.setState({
             enabled: this.props.currentDate ? true : false,
             day: date.getDate(),
@@ -30,12 +36,6 @@ export default class DatePicker extends React.Component {
             year: date.getFullYear(),
             displayedYear: date.getFullYear()
         })
-        const index = Array.from(document.getElementsByClassName('date-input')).indexOf(document.getElementById(this.props.id));
-        const enabled = this.props.currentDate ? true : false; 
-        const switcher = document.getElementsByClassName("toggle-datepicker")[index].style;
-        const slider = document.getElementsByClassName("slider")[index].style;
-        const datepicker = document.getElementsByClassName("date-picker")[index];
-        const disabler = document.getElementsByClassName("disabler")[index];
         switcher.backgroundColor = enabled ? "#574ae2" : "";
         slider.transform = enabled ? "translateX(15px)" : "";
         disabler.style.display = enabled ? "none" : "";

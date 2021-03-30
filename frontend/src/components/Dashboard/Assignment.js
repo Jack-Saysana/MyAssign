@@ -15,6 +15,7 @@ export default class Assignment extends React.Component {
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.toggleCompletion = this.toggleCompletion.bind(this);
         this.updateDate = this.updateDate.bind(this);
+        this.toggleAnnoDisplay = this.toggleAnnoDisplay.bind(this);
     }
 
     componentDidMount(){
@@ -32,13 +33,15 @@ export default class Assignment extends React.Component {
         this.setState({
             title: value
         });
-        await axios.post('http://localhost:5000/updateAssignment', {
-            _id: sessionStorage.getItem('user'),
-            folder: this.props.folder,
-            assignment: this.props.id,
-            title: value,
-            completed: this.state.completed
-        })
+        if(value != this.state.title){
+            await axios.post('http://localhost:5000/updateAssignment', {
+                _id: sessionStorage.getItem('user'),
+                folder: this.props.folder,
+                assignment: this.props.id,
+                title: value,
+                completed: this.state.completed
+            })
+        }
     }
 
     async toggleCompletion(event){
@@ -63,12 +66,20 @@ export default class Assignment extends React.Component {
         });
     }
 
+    toggleAnnoDisplay(event){
+        const annoDisplay = document.getElementsByClassName("annotations-display")[Array.from(document.getElementsByClassName("assignment")).indexOf(document.getElementById(this.props.id))].style;
+        const toggleButton = document.getElementsByClassName("assignment-annotations")[Array.from(document.getElementsByClassName("assignment")).indexOf(document.getElementById(this.props.id))].style;
+        annoDisplay.display = annoDisplay.display === "" ? "flex" : "";
+        toggleButton.transform = annoDisplay.display === "" ? "rotate(-90)" : "rotate(0deg)";
+    }
+
     render(){
         return(
             <div className="assignment" id={this.props.id}>
                 <div className="title-update">
                     <div className="completed" onClick={this.toggleCompletion} />
                     <span className="title" name="title" onBlur={this.handleTitleChange} contentEditable>{this.state.title}</span>
+                    <div className="assignment-annotations" onClick={this.toggleAnnoDisplay} />
                 </div>
                 <div className="annotations-display">
                     <textarea className="notes-input" />
