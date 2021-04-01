@@ -17,12 +17,14 @@ export default class Folder extends React.Component {
             dayCount: 0
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleListUpdate = this.handleListUpdate.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.changeDate = this.changeDate.bind(this);
         this.enterListen = this.enterListen.bind(this);
         this.toggleAnnoField = this.toggleAnnoField.bind(this);
         this.passDayCount = this.passDayCount.bind(this);
+        this.removeFolder = this.removeFolder.bind(this);
     }
 
     async componentDidMount(){
@@ -42,12 +44,20 @@ export default class Folder extends React.Component {
                 notes: this.state.notes,
                 due: this.state.due
             })
-            await axios.get(`http://localhost:5000/assignments/${sessionStorage.getItem('user')}/${this.props.id}`).then(res => {
-                this.setState({
-                    assignment: res.data.assignments
-                })
-            })
+            this.setState({
+                title: ""
+            });
+            this.handleListUpdate();
         }
+    }
+
+    async handleListUpdate(){
+        const assignments = await axios.get(`http://localhost:5000/assignments/${sessionStorage.getItem('user')}/${this.props.id}`).then(res => {
+            return res.data.assignments;
+        });
+        this.setState({
+            assignments: assignments
+        });
     }
 
     handleChange(event) {
@@ -98,24 +108,38 @@ export default class Folder extends React.Component {
         this.props.updateDayCounts(this.props.index, this.state.dayCount);
     }
 
+    async removeFolder(){
+        await axios.delete("http://localhost:5000/deleteFolder", {
+            data: {
+                _id: sessionStorage.getItem('user'),
+                folder: this.props.id
+            }
+        });
+        this.props.updateFolderList();
+    }
+
     render(){
         return(
-            <div className="folder" id={this.props.id}>
-                <span className="folder-name" onBlur={this.handleNameChange} suppressContentEditableWarning={true} contentEditable>{this.state.name}</span>
-                <div className="assignment-list">
-                    {this.state.assignments.map(assignment =>
-                        <Assignment id={assignment._id} folder={this.props.id} folderIndex={this.props.index} data={assignment} key={assignment._id} />
-                    )}
-                </div>
-                <div className="name-field">
-                    <input className="add-assignment add-elem" type="text" name="title" placeholder="New Assignment" autoComplete="off" onBlur={this.toggleAnnotations} onKeyDown={this.enterListen} onChange={this.handleChange} ></input>
-                    <div className="add-assignment-button add-elem-button" onClick={this.handleSubmit} />
-                    <div className="add-annotations" onClick={this.toggleAnnoField} />
-                </div>
-                <div className="annotations-field">
-                    <div className="close" onClick={this.toggleAnnoField} />
-                    <textarea className="notes-input" name="notes" placeholder="Notes..." onChange={this.handleChange} />
-                    <DatePicker changeDate={this.changeDate} id={`${this.props.id}_DatePicker`} key={this.props.id} />
+            <div>
+                <span className="folder-target" id={`${this.props.id}_target`}/>
+                <div className="folder" id={this.props.id}>
+                    <span className="folder-name elem-title" onBlur={this.handleNameChange} suppressContentEditableWarning={true} spellcheck="false" contentEditable>{this.state.name}</span>
+                    <div className="remove-elem remove-folder" onClick={this.removeFolder} />
+                    <div className="assignment-list">
+                        {this.state.assignments.map(assignment =>
+                            <Assignment id={assignment._id} folder={this.props.id} folderIndex={this.props.index} updateList={this.handleListUpdate} data={assignment} key={assignment._id} />
+                        )}
+                    </div>
+                    <div className="name-field">
+                        <input className="add-assignment add-elem" type="text" name="title" placeholder="New Assignment" autoComplete="off" onKeyDown={this.enterListen} onChange={this.handleChange} ></input>
+                        <div className="add-assignment-button add-elem-button" onClick={this.handleSubmit} />
+                        <div className="add-annotations" onClick={this.toggleAnnoField} />
+                    </div>
+                    <div className="annotations-field">
+                        <div className="close" onClick={this.toggleAnnoField} />
+                        <textarea className="notes-input" name="notes" placeholder="Notes..." onChange={this.handleChange} />
+                        <DatePicker changeDate={this.changeDate} id={`${this.props.id}_DatePicker`} key={this.props.id} />
+                    </div>
                 </div>
             </div>
         )

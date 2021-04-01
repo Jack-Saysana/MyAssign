@@ -4,6 +4,7 @@ import axios from 'axios';
 import update from 'react-addons-update';
 import Folder from './Folder';
 import FolderAdd from './FolderAdd';
+import Navbar from '../Navbar/Navbar'
 import '../App/global.css';
 import './dashboard.css';
 
@@ -18,7 +19,6 @@ export default class Dashboard extends React.Component {
             AssignmentModalVisible: false,
             redirect: '/user'
         }
-        this.newAssingment = this.newAssingment.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.refreshFolders = this.refreshFolders.bind(this);
         this.updateDayCounts = this.updateDayCounts.bind(this);
@@ -41,20 +41,12 @@ export default class Dashboard extends React.Component {
     }
 
     async refreshFolders(){
-        await axios.get(`http://localhost:5000/folders/${sessionStorage.getItem('user')}`).then(res => {
-            this.setState({
-                folders: res.data.folders
-            });
+        const folders = await axios.get(`http://localhost:5000/folders/${sessionStorage.getItem('user')}`).then(res => {
+            return res.data.folders
         });
-    }
-
-    newAssingment(event){
-        event.preventDefault();
         this.setState({
-            FolderModalVisible: false
-        });
-        document.getElementsByClassName("blur")[0].style.display = "block";
-        document.getElementsByClassName("blur")[0].style.transitionDuration = ".2s";
+            folders: folders
+        })
     }
 
     closeModal(){
@@ -78,26 +70,27 @@ export default class Dashboard extends React.Component {
 
     render() {
         return(
-            <div id="dashboard">
-                <button onClick={this.newAssingment}>New Assignment</button>
-                <div className="side-bar">
-                    <h3 className="side-title">Folders</h3>
-                    {this.state.folders.map(folder =>
-                        <a className="folder-select" href={`#${folder._id}`} key={folder._id}>
-                            <div className="select-content">
-                                {folder.name}
-                            </div>
-                        </a>
-                    )}
-                    <FolderAdd refreshFolders={this.refreshFolders} />
+            <div>
+                {/*<Navbar />*/}
+                <div id="dashboard">
+                    <div className="side-bar">
+                        <h3 className="side-title">Folders</h3>
+                        {this.state.folders.map(folder =>
+                            <a className="folder-select" href={`#${folder._id}_target`} key={folder._id}>
+                                <div className="select-content">
+                                    <span className="select-text">{folder.name}</span>
+                                </div>
+                            </a>
+                        )}
+                        <FolderAdd refreshFolders={this.refreshFolders} />
+                    </div>
+                    <div className="assignment-display">
+                        {this.state.folders.map(folder =>
+                            <Folder id={folder._id} data={folder} index={this.state.folders.findIndex(elem => elem._id === folder._id)} updateFolderList={this.refreshFolders} updateDayCounts={this.updateDayCounts} key={folder._id} />
+                        )}
+                    </div>
+                    <Redirect to={this.state.redirect} />
                 </div>
-                <div className="assignment-display">
-                    {this.state.folders.map(folder => 
-                        <Folder id={folder._id} data={folder} index={this.state.folders.findIndex(elem => elem._id === folder._id)} updateDayCounts={this.updateDayCounts} key={folder._id} />
-                    )}
-                </div>
-
-                <Redirect to={this.state.redirect} />
             </div>
         )
     }

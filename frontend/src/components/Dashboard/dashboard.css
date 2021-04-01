@@ -3,30 +3,9 @@ html {
     scroll-behavior: smooth;
 }
 
-#dashboard .container {
-    border: 1px solid;
-    border-radius: .25rem;
-    border-color: #edebeb;
-    padding: 1rem;
-}
-
-#dashboard .modal {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 25rem;
-    background-color: #faf9f9;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-#dashboard .field {
-    width: 100%;
-    font-size: 1rem;
-}
-
 #dashboard .side-title {
     padding-left: 1rem;
+    cursor: default;
 }
 
 #dashboard .folder-add{
@@ -74,6 +53,7 @@ html {
 
 #dashboard .side-bar {
     position: fixed;
+    /*margin-top: 5rem;*/
     width: 17rem;
     height: 100%;
     top: 0px;
@@ -92,6 +72,15 @@ html {
     padding-top: .5rem;
     padding-bottom: .5rem;
     padding-left: calc(1rem + 27px);
+    transition: .2s;
+}
+
+#dashboard .select-text {
+    display: inline-block;
+    max-width: 75%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 #dashboard .select-content:hover{
@@ -101,8 +90,15 @@ html {
 }
 
 #dashboard .assignment-display {
+    margin-top: 2rem;
     margin-left: 19rem;
 }
+
+/*#dashboard .folder-target {
+    margin-top: -7rem;
+    height: 7rem;
+    display: block;
+}*/
 
 #dashboard .folder {
     width: calc(100% - 4rem);
@@ -115,12 +111,13 @@ html {
 }
 
 #dashboard .folder-name {
+    overflow: hidden;
     border: none;
     outline: none;
     font-weight: bold;
     font-size: 1.1rem;
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-left: 1px;
+    padding-right: 1px;
 }
 
 #dashboard .folder h3 {
@@ -207,7 +204,8 @@ html {
     resize: none;
     border: 2px solid #ccc;
     border-radius: .25rem;
-    width: calc(90% - 22rem - 10px);
+    width: calc(90% - 23rem - 10px);
+    padding: .5rem;
     height: 15rem;
     margin-left: 5%;
     margin-top: 2.5rem;
@@ -337,7 +335,7 @@ html {
 #dashboard .day:hover > .selector{
     background-color:#574ae2;
     transition-duration: .2s;
-    z-index: 2;
+    z-index: 3;
 }
 
 #dashboard .day:hover > .day-label{
@@ -385,7 +383,7 @@ html {
     position: absolute;
     width: calc(20rem - 1px);
     height: 100%;
-    z-index: 1;
+    z-index: 2;
 }
 
 #dashboard .assignment {
@@ -396,15 +394,13 @@ html {
 #dashboard .title-update{
     position: relative;
     display: block;
-    max-width: 25%;
-    overflow: hidden;
 }
 
 #dashboard .completed {
     float: left;
     width: .9rem;
     height: .9rem;
-    margin-top: 3px;
+    margin-top: 1px;
     border: 2px solid #6254ff;
     border-radius: 1rem;
     transition: .2s;
@@ -419,25 +415,41 @@ html {
     background: none;
     border: none;
     outline: none;
-    padding-left: 2px;
-    padding-right: 4px;
-    margin-left: 4px;
+    padding-left: 1px;
+    padding-right: 2px;
+    margin-left: 5px;
     font-size: 1rem;
 }
 
-#dashboard .assignment-title:hover {
+#dashboard .elem-title{
+    display: inline-block;
+    max-width: 25%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin-top: -2px;
+    border-bottom: 2px solid transparent;
+}
+
+#dashboard .elem-title::-webkit-scrollbar{
+    display: none;
+}
+
+#dashboard .elem-title:hover{
     border-bottom: 2px solid #ccc;
 }
 
-#dashboard .assignment-title:focus {
-    border-bottom: 2px solid #443ab0;
+#dashboard .elem-title:focus{
+    overflow: scroll;
+    text-overflow: unset;
+    border-bottom: 2px solid #574ae2;
     transition: .2s;
 }
 
 #dashboard .assignment-annotations {
-    position: absolute;
-    margin-left: 390%;
-    margin-top: -1.25rem;
+    float: right;
     width: 24px;
     height: 24px;
     background: url("../../images/down-ccc.svg");
@@ -458,4 +470,24 @@ html {
     border-bottom: 2px solid #ccc;
     border-top: 2px solid #ccc;
     transition-duration: .2s;
+}
+
+#dashboard .remove-elem {
+    width: 20px;
+    height: 20px;
+    background: url("../../images/trash-ccc.svg");
+}
+
+#dashboard .remove-elem:hover{
+    background: url("../../images/trash-ff0033.svg");    
+    transition: .2s;
+}
+
+#dashboard .remove-folder{
+    float: right;
+}
+
+#dashboard .remove-assignment{
+    margin-top: 1rem;
+    margin-left: 2%;
 }

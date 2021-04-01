@@ -1,6 +1,5 @@
 import './Home.css';
 import React, { Component }from 'react';
-import Navbar from '../Navbar/Navbar';
 
 /*Dason Janda*/
 
@@ -8,7 +7,6 @@ class Home extends Component {
   render() {
     return  (
       <div>
-        <Navbar />
         <div className='home'>
           <div className='head'>
             <h1>Welcome to MyAssign!</h1>

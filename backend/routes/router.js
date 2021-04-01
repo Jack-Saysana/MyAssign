@@ -178,16 +178,6 @@ router.post('/updateAssignment', (req, res) => {
     User.findOne({ _id: req.body._id }, async (err, user) => {
         if(err) res.status(400).send({ error: err });
         const assignment = user.folders.id(req.body.folder).assignments.id(req.body.assignment);
-        console.log(user.folders.id(req.body.folder).assignments.id(req.body.assignment));
-        /*user.folders.id(req.body.folder).assignments.id(req.body.assignment) = {
-            title: req.body.title,
-            annotations: {
-                notes: (req.body.notes ? req.body.notes : ""),
-                due: (req.body.due ? req.body.due : undefined),
-                reoccuring: req.body.reoccuring
-            },
-            completed: req.body.completed
-        };*/
         assignment.title = req.body.title ? req.body.title : assignment.title;
         assignment.annotations.notes = req.body.notes ? req.body.notes : assignment.annotations.notes;
         assignment.annotations.due = req.body.due ? req.body.due : assignment.annotations.due;
