@@ -51,15 +51,25 @@ html {
     transition-duration: .2s;
 }
 
+#dashboard .limit-message {
+    position: absolute;
+    color: #ff0033;
+    margin-top: 1.7rem;
+    margin-left: 2.5rem;
+    font-size: .75rem;
+    display: none;
+    transition: .2s;
+}
+
 #dashboard .side-bar {
     position: fixed;
-    /*margin-top: 5rem;*/
+    margin-top: 5rem;
     width: 17rem;
     height: 100%;
     top: 0px;
     left: 0px;
-    background-color: #edebeb;
-    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, .2)
+    background-color: #faf9f9;
+    box-shadow: 1px 0px 5px 1px rgba(122, 110, 255, .3)
 }
 
 #dashboard .folder-select {
@@ -90,24 +100,27 @@ html {
 }
 
 #dashboard .assignment-display {
-    margin-top: 2rem;
-    margin-left: 19rem;
+    position: relative;
+    margin-top: 7rem;
+    margin-left: 17rem;
+    padding-bottom: 0rem;
 }
 
-/*#dashboard .folder-target {
+#dashboard .folder-target {
     margin-top: -7rem;
     height: 7rem;
     display: block;
-}*/
+}
 
 #dashboard .folder {
-    width: calc(100% - 4rem);
-    background-color: #edebeb;
+    width: calc(100% - 6rem);
+    background-color: #faf9f9;
     padding: 1rem;
     padding-bottom: 3rem;
+    margin-left: 2rem;
     margin-bottom: 2rem;
     border-radius: .5rem;
-    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, .2)
+    box-shadow: 0px 0px 5px 3px rgba(122, 110, 255, .2)
 }
 
 #dashboard .folder-name {
@@ -141,7 +154,7 @@ html {
     font-size: 1rem;
     border: none;
     background: none;
-    width: calc(100% - 27rem);
+    width: calc(100% - 10rem);
 }
 
 #dashboard .add-assignment:focus ~ .add-annotations{
@@ -235,6 +248,7 @@ html {
     height: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
+    background-color: #edebeb;
     margin-left: 1rem;
     transition: .4s;
     cursor: pointer;
@@ -335,13 +349,13 @@ html {
 #dashboard .day:hover > .selector{
     background-color:#574ae2;
     transition-duration: .2s;
-    z-index: 3;
+    /*z-index: 3;*/
 }
 
 #dashboard .day:hover > .day-label{
     color: #faf9f9;
     font-weight: bold;
-    z-index: 99;
+    /*z-index: 99;*/
 }
 
 #dashboard .selector {
@@ -490,4 +504,16 @@ html {
 #dashboard .remove-assignment{
     margin-top: 1rem;
     margin-left: 2%;
+}
+
+#dashboard .background-graphic{
+    position: fixed;
+    width: calc(100% - 17rem);
+    height: 100%;
+    margin-left: 17rem;
+    bottom: 0;
+    background-image: url("../../images/background.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 0;
 }

@@ -46,12 +46,12 @@
     margin-top: -1px;
     width: 200%;
     height: 100%;
-    background: url("../../images/wave.svg");
+    background: url("../../images/wave-6254ff.svg");
     animation: wave 10s linear infinite;
 }
 
 .auth-page .wave:nth-of-type(2){
-    animation: wave 10s linear -2s infinite;
+    animation: wave 15s linear infinite;
 }
 
 @keyframes wave {
@@ -60,7 +60,7 @@
     }
 
     100% {
-        transform: translateX(-41.5%);
+        transform: translateX(-41.2%);
     }
 }
 

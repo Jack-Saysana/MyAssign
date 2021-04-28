@@ -16,10 +16,8 @@ export default class Dashboard extends React.Component {
         this.state = {
             folders: [],
             dayCounts: [],
-            AssignmentModalVisible: false,
             redirect: '/user'
         }
-        this.closeModal = this.closeModal.bind(this);
         this.refreshFolders = this.refreshFolders.bind(this);
         this.updateDayCounts = this.updateDayCounts.bind(this);
     }
@@ -49,14 +47,6 @@ export default class Dashboard extends React.Component {
         })
     }
 
-    closeModal(){
-        this.setState({
-            AssignmentModalVisible: false
-        });
-        document.getElementsByClassName("blur")[0].style.display = "none";
-        document.getElementsByClassName("blur")[0].style.transitionDuration = ".2s";
-    }
-
     updateDayCounts(index, count){
         this.setState(update(this.state, {
             dayCounts: {
@@ -71,7 +61,7 @@ export default class Dashboard extends React.Component {
     render() {
         return(
             <div>
-                {/*<Navbar />*/}
+                <Navbar />
                 <div id="dashboard">
                     <div className="side-bar">
                         <h3 className="side-title">Folders</h3>
@@ -84,6 +74,7 @@ export default class Dashboard extends React.Component {
                         )}
                         <FolderAdd refreshFolders={this.refreshFolders} />
                     </div>
+                    <div className="background-graphic" />
                     <div className="assignment-display">
                         {this.state.folders.map(folder =>
                             <Folder id={folder._id} data={folder} index={this.state.folders.findIndex(elem => elem._id === folder._id)} updateFolderList={this.refreshFolders} updateDayCounts={this.updateDayCounts} key={folder._id} />

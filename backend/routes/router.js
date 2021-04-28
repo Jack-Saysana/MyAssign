@@ -263,7 +263,7 @@ router.delete('/deleteAssignment', (req, res) => {
 router.post('/folder', async (req, res) => {
     User.findOne({ _id: req.body._id }, async (err, user) => {
         if (err) res.status(500).send({ error: err });
-        if (user.folders.length <= 10) {
+        if (user.folders.length < 10) {
             user.folders.push(new Folder({
                 name: req.body.name
             }));
@@ -272,14 +272,18 @@ router.post('/folder', async (req, res) => {
                     if (err) res.status(500).send({ error: err });
                     res.status(200).send({
                         message: "Folder successfully added",
-                        redirect: '/user'
+                        redirect: '/user',
+                        limit: false
                     });
                 });
             } catch (err) {
                 res.status(500).send({ error: err });
             }
         } else {
-            res.status(400).send({ error: "Folder limit reached" })
+            res.status(200).send({ 
+                message: "Folder limit reached",
+                limit: true
+            });
         }
     }).catch(err => {
         res.status(404).send({ error: err });

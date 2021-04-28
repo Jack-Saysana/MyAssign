@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <polygon style="stroke: rgb(98, 84, 255); fill: rgb(98, 84, 255); fill-opacity: 0.95; stroke-opacity: 0.95;" points="-23.055 500 -23.055 212.102 263.621 498.777"/>
+  <polygon style="fill: rgb(87, 74, 226); stroke: rgb(87, 74, 226); fill-opacity: 0.95; stroke-opacity: 0.95;" points="-23.209 237.086 239.266 499.561 523.208 236.255" transform="matrix(-1, 0, 0, -1, 499.999, 735.816051)"/>
+  <polygon style="stroke: rgb(98, 84, 255); fill: rgb(98, 84, 255); fill-opacity: 0.9;" points="523.088 207.852 -18.437 207.852 -18.437 499.374" transform="matrix(-1, 0, 0, -1, 504.651039, 707.226024)"/>
+  <polygon style="stroke: rgb(122, 110, 255); fill: rgb(122, 110, 255); fill-opacity: 0.9;" points="184.508 302.775 184.508 499.052 -22.171 413.443" transform="matrix(-1, 0, 0, -1, 162.337008, 801.827038)"/>
+  <polygon style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" points="70.066 276.019"/>
+</svg>

@@ -10,10 +10,10 @@ export default class Day extends React.Component {
         const selector = document.getElementsByClassName("selector")[Array.from(document.getElementsByClassName("day")).indexOf(document.getElementById(this.props.id))];
         const dayLabel = document.getElementsByClassName("day-label")[Array.from(document.getElementsByClassName("day")).indexOf(document.getElementById(this.props.id))];
         selector.style.backgroundColor = this.props.dayData.active ? !this.props.enabled ? "rgb(161, 161, 161)" : "#574ae2" : "";
-        selector.style.zIndex = this.props.dayData.active ? "3" : "";
+        //selector.style.zIndex = this.props.dayData.active ? "3" : "";
         dayLabel.style.color = this.props.dayData.active ? !this.props.enabled ? "#ccc" : "#faf9f9" : "";
         dayLabel.style.fontWeight = this.props.dayData.active ? "bold" : "";
-        dayLabel.style.zIndex = this.props.dayData.active ? "99" : "";
+        //dayLabel.style.zIndex = this.props.dayData.active ? "99" : "";
     }
 
     selectDay(event){
