@@ -490,6 +490,7 @@ html {
     width: 20px;
     height: 20px;
     background: url("../../images/trash-ccc.svg");
+    cursor: pointer;
 }
 
 #dashboard .remove-elem:hover{

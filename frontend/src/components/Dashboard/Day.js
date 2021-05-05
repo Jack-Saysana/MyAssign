@@ -1,5 +1,7 @@
 import React from 'react';
 
+//Jack Saysana
+
 export default class Day extends React.Component {
     constructor(props){
         super(props);

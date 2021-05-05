@@ -102,6 +102,94 @@ router.post('/logout', (req, res) => {
     res.status(200).send({ message: "Successfully logged out"});
 });
 
+/* ============== (GET) USER ============== BY JACK SAYSANA
+    RETURNS USER INFO
+
+    PARAMETERS:
+        - req.params.userId (STRING) => user id
+
+    REQUIRES:
+        - user authenticated
+
+    RETURNS:
+        - name (STRING) => user id
+        - email (STRING) => user email
+        - creation (STRING) => user creation date
+
+    STATUS CODES:
+        200 - Successful Request
+        400 - Bad Request/Client Error
+        404 - User not found
+*/
+
+router.get('/user/:userId', (req, res) => {
+    User.findOne({_id: req.params.userId}, (err, user) => {
+        if(err) res.status(400).send({ error: err });
+        res.status(200).send({
+            name: user.name,
+            email: user.email,
+            creation: user.createdAt
+        });
+    }).catch(err => {
+        res.status(404).send({error: err});
+    });
+});
+
+/* ============== (POST) UPDATEUSER ============== BY JACK SAYSANA
+    RETURNS USER INFO
+
+    PARAMETERS:
+        - req.body._id (STRING) => user id
+        - req.body.name (STRING) => updated name
+        - req.body.email (STRING) => updated email
+
+    REQUIRES:
+        - user authenticated
+
+    RETURNS:
+        - message (STRING) => status message
+
+    STATUS CODES:
+        200 - Successful Request
+        500 - Internal Server Error
+        400 - Bad Request/Client Error
+        404 - User not found
+*/
+
+router.post('/updateUser', async (req, res) => {
+    User.findOne({ _id: req.body._id }, async (err, user) => {
+        if (err) res.status(400).send({ error: err });
+        console.log(req.body);
+        if(req.body.name != user.name){
+            console.log("name updating");
+            user.name = req.body.name;
+        }
+        if(req.body.email != user.email){
+            console.log("email updating");
+            User.findOne({ email: req.body.email }, (err, email) =>{
+                if (err) res.status(400).send({ error: err });
+                if(email){
+                    res.send({ error: "Email already in use"});
+                }else{
+                    user.email = req.body.email;
+                }
+            });
+        }
+        try {
+            await user.save(err => {
+                if (err) res.status(500).send({ error: err });
+                res.status(200).send({
+                    message: "User successfully updated"
+                });
+            });
+        } catch(err) {
+            res.status(500).send({ error: err });
+        }
+    }).catch(err => {
+        res.status(404).send({ error: err });
+    });
+});
+
 /* ============== (POST) ASSIGNMENT ============== BY JACK SAYSANA
     CREATES AND STORES ASSIGNMENT FOR GIVEN USER
 

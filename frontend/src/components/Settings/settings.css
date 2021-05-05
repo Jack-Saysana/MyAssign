@@ -1,0 +1,9 @@
+#settings {
+    margin-top: 5rem;
+}
+
+#settings .submit-update {
+    width: 2rem;
+    height: 2rem;
+    background-color: black;
+}

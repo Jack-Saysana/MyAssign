@@ -47,6 +47,7 @@ export default class Folder extends React.Component {
             this.setState({
                 title: ""
             });
+            document.getElementsByClassName("add-assignment")[this.props.index].value = "";
             this.handleListUpdate();
         }
     }
