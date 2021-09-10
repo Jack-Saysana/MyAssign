@@ -3,7 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Home from '../Home/Home';
 import Signup from '../Authentication/Signup';
 import Login from '../Authentication/Login';
-import Dashboard from '../Dashboard/Dashboard';
+import Dashboard from '../Dashboard/dashboard';
 import Logout from '../Authentication/Logout';
 import Settings from '../Settings/Settings';
 /*Dason Janda*/
